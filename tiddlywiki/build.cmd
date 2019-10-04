@@ -1,1 +1,1 @@
-tiddlywiki --build index
+tiddlywiki --build blog

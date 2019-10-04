@@ -10,16 +10,16 @@
         "tiddlywiki/snowwhite"
     ],
     "build": {
-        "index": [
+        "blog": [
             "--output",
-            ".",
+            "./../",
             "--rendertiddler",
             "$:/plugins/tiddlywiki/tiddlyweb/save/offline",
-            "index.html",
+            "tiddly.html",
             "text/plain",
             "",
-           	"publishFilter",
-           	"-[tag[wip]]"
+            "publishFilter",
+            "-[tag[wip]]"
         ],
         "externalimages": [
             "--savetiddlers",

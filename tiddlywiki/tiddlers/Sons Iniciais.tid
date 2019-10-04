@@ -1,7 +1,7 @@
 created: 20190526015318289
-modified: 20190529005028887
-tags: lang/cmn wip
-title: Consoantes Pinyin
+modified: 20190818234621810
+tags: lang/cmn
+title: Sons Iniciais
 type: text/vnd.tiddlywiki
 written-in: pt-BR
 
@@ -12,11 +12,12 @@ written-in: pt-BR
   .zs{background: #ffc;}
   .vert{writing-mode: vertical-rl; transform: rotate(180deg); margin: 5px 0}
   .group > span { padding: 0 0.3em; }
+  .center { margin: 0 auto; }
 </style>
 
-Existem seis grupos de consoantes no pinyin (e no mandarim padrão). [Por que?]
+Existem seis grupos de sons iniciais no mandarim padrão.
 
-<table style='margin: 0 auto'><tbody><tr>
+<table class="center"><tbody><tr>
 <td style="background: #ccf;">b  p   m  f </td>
 <td style="background: #cfc;">d  t   n  l </td>
 <td style="background: #fcc;">g  k   h    </td>
@@ -27,8 +28,8 @@ Existem seis grupos de consoantes no pinyin (e no mandarim padrão). [Por que?]
 
 A forma que eu tenho usado pra lembrar o som é  identificando algumas simetrias (?) de como o Pinyin foi feito:
 
-*"""Pares [[vozeados|Vozeamento]]/não vozeados correspondem a [[aspiração|Aspiração]]/sem aspiração.
-Exemplo: ''b'' não é "ba" mas "pa" sem expelir ar.
+*"""Pares [[vozeados/não vozeados|Vozeamento]] correspondem a [[aspiração/sem aspiração|Aspiração]].
+Exemplo: ''b'' não é "ba" mas "pa" sem expelir ar. Aparentemente, é conhecido que falantes nativos distinguem mais a aspiração mesmo que o som que você reproduza seja vozeado ou não.
 Divergência: z/c é um par aspirado/sem aspiração, apesar que o usual seria z/s."""
 
 *"""A série <span class="group"><span class="js">j q x</span><span class="zhs">zh ch sh </span><span class="zs">z c s</span></span>, é extremamente parecida. Como as cores e a ordem podem indicar, há algumas semelhanças nessas nove consoantes. Essa table indica muito bem as diferenças e semelhanças:

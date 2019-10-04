@@ -1,12 +1,11 @@
 caption: Root
 created: 20190526022836287
 list-after: $:/core/ui/SideBar/Open
-modified: 20190526023013228
+modified: 20190819000904418
 tags: $:/tags/SideBar
 title: Root
+type: text/vnd.tiddlywiki
 
 <div class="tc-table-of-contents">
-
 <<toc-selective-expandable 'Root'>>
-
 </div>

@@ -88,3 +88,8 @@ div#icon-holder > div.work {
 .social {
     font-size: 0.7em;
 }
+
+svg {
+    display: inline-block;
+    height: 1em;
+}

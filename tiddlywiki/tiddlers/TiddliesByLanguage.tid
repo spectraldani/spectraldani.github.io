@@ -1,0 +1,17 @@
+created: 20191005171301669
+modified: 20191005191109192
+tags: Root
+title: TiddliesByLanguage
+type: text/vnd.tiddlywiki
+written-in: en-US
+
+<$list filter="[each[written-in]get[written-in]]" variable="lang">
+
+Written in:
+<$tiddler tiddler=<<lang>>>
+<$transclude tiddler="$:/core/ui/TagTemplate"/>
+</$tiddler>
+<div class="tc-table-of-contents">
+<$macrocall $name="toc-selective-expandable" tag="Root" sort="field:written-in[$(lang)$]"/>
+</div>
+</$list>

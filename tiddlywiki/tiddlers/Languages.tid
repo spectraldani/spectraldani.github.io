@@ -1,0 +1,8 @@
+<$list filter="[tags[]regexp[^lang/]]" variable="lang">
+<$tiddler tiddler=<<lang>>>
+<$transclude tiddler="$:/core/ui/TagTemplate"/>
+</$tiddler>
+<div class="tc-table-of-contents">
+<$macrocall $name="toc-selective-expandable" tag=<<lang>>/>
+</div>
+</$list>

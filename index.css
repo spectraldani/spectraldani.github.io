@@ -30,6 +30,7 @@ div#icon-holder {
     margin: 0 auto;
     width: fit-content;
     font-size: 1.5em;
+    text-align: center;
 }
 
 div#icon-holder > a {

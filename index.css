@@ -22,7 +22,7 @@ img#avatar {
     /* border-radius: 6.3em; */
 }
 
-h1,h2,h3,h4 {
+h1 {
     text-align: center;
 }
 
@@ -62,22 +62,25 @@ p.no-indent {
     text-indent: 0;
 }
 
+p:first-child {
+    text-indent: 3em;
+}
+
 p {
     text-align: justify;
     word-break: break-word;
-    text-indent: 3em;
     margin-left: auto;
     margin-right: auto;
     max-width: 600px;
+    margin-bottom: 0.5em;
 }
-
 
 main {
     max-width: 40em;
     margin: 0 auto;
 }
 
-div.bio {
+div#bio {
     margin-bottom: 1em;
 }
 
@@ -93,4 +96,37 @@ div#icon-holder > div.work {
 svg {
     display: inline-block;
     height: 1em;
+}
+
+li.article {
+    border: 1px solid;
+    padding: 0.5em;
+    display: inline-block;
+    position: relative;
+}
+
+li.article > div.icons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#publication-list > li {
+    margin-bottom: 2em;
+}
+
+#publication-list > li > ul > li {
+    margin-bottom: 0.5em;
+}
+
+span.article-title {
+    font-style: italic;
+}
+
+.paper-preview {
+    float: left;
+    width: 5em;
+    height: 7.071em;
+    border: 1px solid black;
+    margin-right: 1em;
 }

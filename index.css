@@ -22,7 +22,7 @@ img#avatar {
     /* border-radius: 6.3em; */
 }
 
-h1 {
+.title {
     text-align: center;
 }
 
@@ -103,6 +103,7 @@ li.article {
     padding: 0.5em;
     display: inline-block;
     position: relative;
+    padding: -;
 }
 
 li.article > div.icons {
@@ -139,7 +140,7 @@ span.article-title {
 
 .paper-preview.draft::after {
     display: block;
-    color: rgba(0,0,0,0.5);
+    color: #888;
     content: "DRAFT";
     transform: rotate(-54.74deg) translateY(-0.1em);
     font-size: 1.5em;

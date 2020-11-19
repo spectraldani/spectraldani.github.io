@@ -130,3 +130,17 @@ span.article-title {
     border: 1px solid black;
     margin-right: 1em;
 }
+
+.paper-preview.draft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paper-preview.draft::after {
+    display: block;
+    color: rgba(0,0,0,0.5);
+    content: "DRAFT";
+    transform: rotate(-54.74deg) translateY(-0.1em);
+    font-size: 1.5em;
+}

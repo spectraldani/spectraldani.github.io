@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://spectral.space/">
   <meta property="og:description"
         content="Hi! I'm an M.Sc. in computer science from UFC. My research is currently focused on Gaussian Processes.">
-  <meta property="og:image" content="https://spectral.space/ogimage.jpg">
+  <meta property="og:image" content="https://spectral.space/icon/ogimage.jpg">
   <meta name="twitter:site" content="@spectraldani"/>
 
 
@@ -19,15 +19,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   <link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 <body lang="en">
 <header>
-  <img alt="" id="avatar" src="./avatar.png">
-  <div id="title">
-    <h1 id="name" class="title is-1">Daniel Augusto</h1>
-  </div>
+  <picture>
+    <source srcset="./assets/avatar.webp" type="image/webp">
+    <img alt="" id="avatar" src="./assets/avatar.png">
+  </picture>
+  <h1 id="name" class="title">Daniel Augusto</h1>
 </header>
 <div id="bio">
   <p>Hi! I'm an M.Sc. in computer science from <a href="http://www.ufc.br/">UFC</a>. My research in machine learning at
@@ -41,14 +41,14 @@
   </p>
   <div id="icon-holder" aria-label="Contact information">
     <div class="work">
-      <a class="icon is-medium" title="E-Mail" aria-label="Send E-Mail" href="mailto:sentret@outlook.com">
+      <a class="icon" title="E-Mail" aria-label="Send E-Mail" href="mailto:sentret@outlook.com">
         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path fill="currentColor"
                 d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
           />
         </svg>
       </a>
-      <a class="icon is-medium" title="GitHub" aria-label="Go to GitHub" href="https://github.com/spectraldani">
+      <a class="icon" title="GitHub" aria-label="Go to GitHub" href="https://github.com/spectraldani">
         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512">
           <g id="icon-github">
             <path fill="currentColor"
@@ -57,7 +57,7 @@
           </g>
         </svg>
       </a>
-      <a class="icon is-medium" title="LinkedIn" aria-label="Go to LinkedIn"
+      <a class="icon" title="LinkedIn" aria-label="Go to LinkedIn"
          href="https://www.linkedin.com/in/ramosmd/">
         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path fill="currentColor"
@@ -97,21 +97,27 @@
 <div id="publications">
   <h2 class="title">Publications</h2>
   <ul id="publication-list">
-    <li><h3 class="title is-5">To be published</h3>
+    <li><h3 class="title">To be published</h3>
       <ul>
         <li class="article">
-          <div class="paper-preview draft"></div>
-          <span class="authors">Me, César Lincoln C. Mattos, João Paulo P. Pordeus</span>.
-          <span class="article-title">Deep Mahalanobis Gaussian process</span>.
-          Draft.
+          <div class="paper-preview">
+            <div class="draft"></div>
+          </div>
+          <div>
+            <span class="authors">Me, César Lincoln C. Mattos, João Paulo P. Pordeus</span>.
+            <span class="article-title">Deep Mahalanobis Gaussian process</span>.
+            Draft.
+          </div>
         </li>
       </ul>
       <ul>
         <li class="article">
-          <img src="./assets/paper_thumb/ugplvm.svg" alt="" class="paper-preview">
-          <span class="authors">Me, Diego Mesquita, César Lincoln C. Mattos, João Paulo P. Pordeus</span>.
-          <span class="article-title">Learning GPLVM with arbitrary kernels using the unscented transformation</span>.
-          Submitted.
+          <div class="paper-preview"><img src="./assets/paper_thumb/ugplvm.svg" alt=""></div>
+          <div>
+            <span class="authors">Me, Diego Mesquita, César Lincoln C. Mattos, João Paulo P. Pordeus</span>.
+            <span class="article-title">Learning GPLVM with arbitrary kernels using the unscented transformation</span>.
+            Submitted.
+          </div>
           <div class="icons">
             <a class="icon" title="Arxiv" aria-label="Go to paper's archive page"
                href="https://arxiv.org/abs/1907.01867">
@@ -133,14 +139,16 @@
         </li>
       </ul>
     </li>
-    <li><h3 class="title is-5">Thesis</h3>
+    <li><h3 class="title">Thesis</h3>
       <ul>
         <li class="article">
-          <img src="./assets/paper_thumb/dissertação.svg" alt="" class="paper-preview">
-          <span class="authors">Me</span> (2020).
-          <span class="article-title">Contributions on latent projections for Gaussian process modeling</span>.
-          Master's thesis, supervisors César Lincoln C. Mattos and João Paulo P. Pordeus. Department of Computer
-          Science, Universidade Federal do Ceará
+          <div class="paper-preview"><img src="./assets/paper_thumb/dissertação.svg" alt=""></div>
+          <div>
+            <span class="authors">Me</span> (2020).
+            <span class="article-title">Contributions on latent projections for Gaussian process modeling</span>.
+            Master's thesis, supervisors César Lincoln C. Mattos and João Paulo P. Pordeus. Department of Computer
+            Science, Universidade Federal do Ceará
+          </div>
           <div class="icons">
             <a class="icon" title="PDF" aria-label="Download this document's PDF" href="./assets/mscthesis.pdf">
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width=".86em" height="1em"

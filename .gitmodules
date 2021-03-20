@@ -1,0 +1,4 @@
+[submodule "cooked"]
+	path = cooked
+	url = git@github.com:spectraldani/spectraldani.github.io.git
+	branch = master

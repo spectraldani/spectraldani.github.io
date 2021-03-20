@@ -42,16 +42,19 @@ a {
 
 /*Header*/
 
-header {
+header#main-header {
     margin-bottom: 1em;
     margin-top: 1em;
 }
 
-img#avatar {
+header#main-header img#avatar {
     display: block;
     height: 18em;
     width: 18em;
     margin: 0 auto;
+}
+
+img#avatar {
     border-radius: 100%;
 }
 
@@ -65,20 +68,23 @@ p.no-indent {
 }
 
 p:first-child {
-    text-indent: 3em;
+    /* text-indent: 3em; */
 }
 
 p {
     text-align: justify;
     word-break: break-word;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 600px;
     margin-bottom: 0.5em;
 }
 
 div#bio {
     margin-bottom: 1em;
+}
+
+div#bio p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
 }
 
 /*Icons*/

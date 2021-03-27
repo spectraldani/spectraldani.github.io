@@ -1,0 +1,337 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 816 1056">
+    <text transform="matrix(1.33333 0 0 1.33333 69 95)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="23.9" font-family="NimbusRomNo9L">
+        <tspan x="0 15 26 37 43 55 66 72 79 91 111 123 140 157 168 174 193 209 220 229 240 260 277 289 297 316 326 341 357 368 380 390 402 409 421 437 458 470 482 493 499"
+               y="0">EvaluationofDataBasedNormalBehaviorModels
+        </tspan>
+        <tspan x="71 79 91 107 120 131 143 150 165 182 193 199 210 220 227 234 246 266 273 293 315 321 333 354 367 379 387 399 406 418 428"
+               y="28">forFaultDetectioninWindTurbines
+        </tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 109 174)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="11" font-family="NimbusRomNo9L">
+        <tspan x="0 8 13 18 21 26 33 41 48 55 61 71 78 86 92 98 106 113 118 123 128 133 140 146 152 155 160 165 175 180 189 194 200 207 212 216 221 226 232 237 242 245 250 254 261"
+               y="0">DanielA.R.M.A.deSouza,ThiagodeP.Vasconcelos,C
+        </tspan>
+        <tspan x="269" y="0">´</tspan>
+        <tspan x="268 273 277 282 290 297 303 310 317 327 332 335 338 343 351 356 362 371 375" y="0">
+            esarL.C.MattosandJo
+        </tspan>
+        <tspan x="381" y="0">˜</tspan>
+        <tspan x="381 386 395 400 406 411 418 426 431 440 445" y="0">aoP.P.Gomes</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 315 191)" style="-inkscape-font-specification:NimbusRomNo9L-ReguItal"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 7 12 17 22 25 28 35 40 45 51 56 62 69 74 81 86 91 94 98 106 111 115 118 122 127 132" y="0">
+            DepartmentofComputerScience
+        </tspan>
+        <tspan x="12 18 22 27 31 35 40 46 54 59 61 66 70 74 78 81 83 91 96 102 109 114 119" y="12">
+            FederalUniversityofCear
+        </tspan>
+        <tspan x="123" y="12">´</tspan>
+        <tspan x="122" y="12">a</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 350 224)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 5 10 14 16 21 24 28 32 37 40 47 53 59 66 69 73 78 81" y="0">Fortaleza-CE,Brazil</tspan>
+        <tspan x="-164 -161 -156 -154 -149 -144 -139 -134 -129 -125 -120 -116 -112 -107 -102 -98 -93 -90 -85 -81 -72 -67 -62 -60 -52 -47 -45 -42 -39 -35 -30 -22 -16 -11 -7 -2 1 5 8 11 16 24 29 32 42 44 47 52 54 59 62 67 69 74 77 83 88 92 96 100 104 106 109 114 119 124 126 131 141 146 150 152 157 161 165 168 173 176 182 184 189 194 199 201 206 216 221 225 227 232 236 240 243 248"
+               y="12">thiagodpvasconcelos@hotmail.com,danielramos@lia.ufc.br,cesarlincoln@dc.ufc.br,jpaulo@dc.ufc.br
+        </tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 79 286)" style="-inkscape-font-specification:NimbusRomNo9L-MediItal"
+          font-size="9" font-family="NimbusRomNo9L">
+        <tspan x="0 6 10 14 16 20 24 28" y="0">Abstract</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 120 286)" style="-inkscape-font-specification:NimbusRomNo9L-Medi"
+          font-size="9" font-family="NimbusRomNo9L">
+        <tspan x="0 9 18 20 25 35 40 45 51 55 64 69 74 82 87 91 95 105 108 113 117 121 125 129 133 135 140 145 147 157 161 166 171 176 179 183 193 197 206"
+               y="0">—Windpowerhasbeenincreasinglyadoptedasa
+        </tspan>
+        <tspan x="-41 -38 -34 -29 -26 -23 -18 -16 -9 -5 -1 4 8 14 19 24 26 33 38 43 49 53 60 64 68 73 77 81 85 90 97 101 108 112 116 120 123 128 131 136 143 147 152 155 161 169 173 176 181 184 188 193 197 202 206"
+               y="10">feasiblerenewablepowersource.However,thecostmaintenance
+        </tspan>
+        <tspan x="-41 -36 -30 -24 -21 -16 -8 -5 0 4 9 12 17 21 28 31 40 46 52 56 60 65 69 73 76 80 85 88 95 103 106 109 113 118 121 126 130 134 139 146 151 155 159 165 170 176 179 184 192 196 200 204 207"
+               y="20">ofwindturbines(WT)representsasignifcantpartofthecosts
+        </tspan>
+        <tspan x="-41 -38 -30 -28 -23 -20 -14 -11 -6 -1 4 7 10 14 22 25 29 33 36 41 44 49 54 61 66 68 71 75 79 82 86 89 96 99 104 108 111 117 121 125 130 135 138 141 143 147 152 155 160 167 175 179 184 187 190 194 198 201 206"
+               y="30">inthisindustrysector.Toalleviatethat,conditioningmonitoring
+        </tspan>
+        <tspan x="-41 -37 -33 -29 -26 -22 -15 -8 -4 0 7 12 16 20 28 31 39 43 47 52 56 59 64 71 78 82 87 90 95 99 104 109 111 118 123 128 131 139 142 149 153 158 163 168 170 177 182 187 191 199 203 206"
+               y="40">systemsareusedtoprovidemeasurabledatatoenableanomaly
+        </tspan>
+        <tspan x="-41 -36 -32 -29 -25 -21 -18 -15 -11 -4 1 6 10 13 18 25 34 42 47 52 56 60 64 67 70 74 79 84 87 95 98 103 107 113 117 121 126 129 133 138 141 145 148 153 160 165 168 172 176 180 185 190 197 201 205"
+               y="50">detectionduringWToperation.Inthatcontext,thepresentwork
+        </tspan>
+        <tspan x="-41 -36 -34 -26 -20 -17 -9 -5 -1 3 6 11 15 18 25 29 32 36 41 46 51 55 63 70 75 79 84 86 91 98 101 105 109 113 118 121 126 133 141 145 148 153 157 162 169 171 179 182 187 194 197 202 205"
+               y="60">aimstoevaluatestandardmachinelearningmethodsinthetask
+        </tspan>
+        <tspan x="-41 -36 -29 -26 -22 -17 -14 -7 -2 2 6 11 13 17 20 23 27 32 40 43 52 61 71 76 79 82 86 90 93 96 105 108 111 116 128 132 136 141 143 146 150 155 158 166 171 175 178 183 189 198 202 206"
+               y="70">offaultpredictionsinWTdirectlyfromavailabledata.More
+        </tspan>
+        <tspan x="-41 -37 -32 -28 -24 -22 -17 -13 -9 -6 -4 0 8 14 23 26 30 33 35 40 51 60 65 70 74 81 86 93 98 102 107 111 116 118 123 131 139 143 148 152 155 157 162 172 176 181 186 190 194 199 203 208"
+               y="80">specifcally,wefollowanormalbehaviormodelingapproach,
+        </tspan>
+        <tspan x="-41 -34 -29 -25 -22 -13 -10 -5 3 10 14 17 22 27 32 40 42 46 51 55 64 67 72 80 85 89 94 96 99 104 113 117 122 126 130 135 138 140 145 154 158 166 169 174 182 186 190 194 196 200 208"
+               y="90">wherethemethodslearnthehealthyoperationofthesystem.
+        </tspan>
+        <tspan x="-41 -32 -24 -19 -15 -12 -8 -5 1 10 17 21 24 29 34 39 43 46 50 55 63 68 73 76 80 89 94 103 106 111 119 123 127 131 135 140 147 149 152 155 159 163 167 170 175 179 187 194 199 201 205"
+               y="100">Wedetailamethodologybasedontherecentliteraturewhich
+        </tspan>
+        <tspan x="-41 -37 -32 -27 -22 -20 -16 -8 -5 0 8 12 14 18 22 31 35 42 47 49 54 58 65 73 75 84 87 92 100 105 109 113 117 120 125 129 138 142 149 152 157 161 163 168 170 174 179 187 190 194 199 201 204 208"
+               y="110">enablestherisenofalarmsinthepresenceofincipientfaults.
+        </tspan>
+        <tspan x="-41 -32 -25 -20 -16 -12 -9 -5 -1 10 14 18 23 27 31 34 41 45 50 53 60 65 69 71 76 84 88 92 96 102 107 112 115 122 125 129 134 145 152 158 162 167 171 173 176 178 183 191 198 200 205"
+               y="120">WeperformexperimentsusingrealdatafromaBrazilianwind
+        </tspan>
+        <tspan x="-41 -38 -33 -29 -18 -15 -8 -4 1 5 8 13 17 20 28 36 41 43 46 49 53 57 61 66 72 80 84 89 93 96 99 105 107 112 116 119 124 129 131 136 144 148 151 155 158 161 164 167 170 174 178 181 186 189 191 196 200 205 208"
+               y="130">farmtoevaluate6differentmodels,includingstatistical,linear,
+        </tspan>
+        <tspan x="-41 -36 -31 -26 -24 -21 -16 -12 -8 -5 1 5 8 12 15 17 25 30 35 43 48 53 58 62 70 72 76 81 87 91 96 101 105 109 114 118 123 127 130 136 141 144 149 154 159 163 167 176 180 184 188 193 197 202 206"
+               y="140">nonlinear,staticanddynamicalapproaches.Standardaccuracy
+        </tspan>
+        <tspan x="-41 -36 -31 -24 -19 -15 -11 -6 -4 0 3 7 15 19 23 27 33 36 40 45 47 52 57 63 70 74 77 81 84 88 94 96 101 106 109 113 117 120 127 130 135 139 145 149 154 161 168 172 175 180 185 190 194 197 201 206"
+               y="149">andpredictedcostsavingsmetricsindicatethatourmethodology
+        </tspan>
+        <tspan x="-41 -38 -32 -27 -23 -19 -14 -10 -6 -3 5 9 14 18 23 28 36 39 47 52 56 60 64 67 72 79 83 87 90 93 98 102 107 114 117 121 126 128 133 138 141"
+               y="159">isaccurateenoughtoproviderelevantsavings.
+        </tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 79 512)" style="-inkscape-font-specification:NimbusRomNo9L-MediItal"
+          font-size="9" font-family="NimbusRomNo9L">
+        <tspan x="0 3 8 13 17 25 30 34 37 44" y="0">IndexTerms</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 142 512)" style="-inkscape-font-specification:NimbusRomNo9L-Medi"
+          font-size="9" font-family="NimbusRomNo9L">
+        <tspan x="0 9 14 18 22 30 34 41 46 50 55 59 63 66 70 78 86 90 95 99 102 105 111 114 119 124 126 133 138 142 145 149 153 156 159 163 168 174 181 183 188"
+               y="0">—normalbehaviormodels,faultdetection,wind
+        </tspan>
+        <tspan x="-58 -55 -50 -46 -41 -38 -33 -29 -24 -19 -15 -10 -6 -1 4 9 13 16 23 27 31 36 40 45 48 50 55 59 64 71 79 83 88 92 94"
+               y="10">turbine,neuralnetworks,linearmodels
+        </tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 181 553)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 4 12" y="0">I.I</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 202 553)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="8" font-family="NimbusRomNo9L">
+        <tspan x="0 6 12 17 23 30 36 42 47 50 56" y="0">NTRODUCTION</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 79 573)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 3 12 15 20 24 29 34 40 45 50 54 57 61 68 70 75 84 89 94 101 106 111 118 123 130 134 137 142 147 149 154 162 165 169 174 179 182 187 190 195 203 208 213 218 223 226 228 231 236"
+               y="0">Inrecentyears,thenumberofstudiesregardingcondition
+        </tspan>
+        <tspan x="-10 -2 3 8 11 13 18 22 24 29 38 46 50 53 58 63 68 75 80 84 92 97 101 105 114 117 122 126 129 134 138 142 145 150 158 161 169 174 179 182 191 193 198 203 208 212 215 218 227 231 236"
+               y="12">monitoringmethodshasbeenincreasinginbothindustryand
+        </tspan>
+        <tspan x="-10 -6 -1 3 8 13 20 25 32 38 43 52 56 61 66 70 75 78 81 83 86 96 98 108 113 117 120 124 129 136 139 144 149 151 154 163 167 172 177 180 185 192 197 201 205 210 213 217 225 228 232 235 238"
+               y="24">academy.Thecapabilitytodetectfaultsand/orpredictfail-
+        </tspan>
+        <tspan x="-10 -5 -2 3 7 12 16 21 26 29 34 37 42 50 55 59 64 67 72 77 82 86 94 102 106 109 114 117 121 126 131 136 140 147 152 156 159 162 167 172 179 183 188 196 201 206 210 215 220 224 229 232 236"
+               y="36">ures,avoidingunplannedmaintenanceactionsandunexpected
+        </tspan>
+        <tspan x="-10 -6 -1 2 6 10 13 16 21 26 31 34 43 47 52 57 62 64 68 76 80 84 93 96 101 110 118 122 125 135 140 143 146 151 155 159 167 172 181 184 188 191 200 203 208 212 216 220 224 228 231 236"
+               y="48">catastrophicevents,arethemaindriversofthisincreasing
+        </tspan>
+        <tspan x="-10 -6 -3 0 4 9 12 15 20 25 33 40 44 49 54 56 59 63 72 82 86 91 96 101 104 107 110 115 125 133 138 143 146 149 154 157 160 165 175 179 184 188 191 195 209 213 216 224 233 236"
+               y="60">attention.Usually,aconditionmonitoringsystemaimsto
+        </tspan>
+        <tspan x="-10 -5 -1 2 7 11 17 22 27 32 40 44 47 52 57 64 69 74 79 83 88 91 95 99 106 109 114 118 125 133 137 146 148 153 158 161 165 170 173 181 183 188 193 196 201 203 208 213 219 222 227 232 234 237"
+               y="72">detectanomalousbehaviorsthatmayindicateincipientfaults
+        </tspan>
+        <tspan x="-10" y="84">(</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 70 684)" style="-inkscape-font-specification:NimbusRomNo9L-ReguItal"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 3 8 13 16 24 29 34 37 41 46 48 51 56" y="0">faultdetection</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 151 684)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 3 12 19 23 25 30 39 42 47 51 54 63 66 71 81 89 94 99 102 105 110 113 116 121 132 136 141 145 147 152 166 170 172 177 180 183"
+               y="0">).Afterthat,themonitoringsystemstarts
+        </tspan>
+        <tspan x="-64 -57 -52 -47 -44 -39 -30 -25 -22 -17 -12 -10 -5 -3 0 5 10 18 23 33 38 42 54 56 61 66 76 78 83 92 96 101 106 109 114 122 126 131 138 146 148 151 158 162 165 168 170 177 182"
+               y="12">makingpredictionsonhowlongtheequipmentwillstillbe
+        </tspan>
+        <tspan x="-64 -57 -52 -49 -44 -41 -36 -28" y="24">working(</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 118 716)" style="-inkscape-font-specification:NimbusRomNo9L-ReguItal"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 3 8 11 13 18 22 30 35 38 43 48 50 55 58 60 65" y="0">failureprediction</tspan>
+    </text>
+    <text transform="matrix(1.33333 0 0 1.33333 212 716)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+          font-size="10" font-family="NimbusRomNo9L">
+        <tspan x="0 7 10 15 18" y="0">)[1].</tspan>
+        <tspan x="-100 -94 -90 -85 -80 -78 -74 -69 -65 -60 -55 -50 -44 -39 -34 -30 -27 -22 -18 -13 -7 -3 1 4 9 13 18 22 25 29 36 39 44 49 51 57 62 66 69 73 78 81 83 88 96 100 105 110 114 119 123 128 133 137"
+               y="12">Vachtsevanosetal.[1]categorizefaultdetectionapproaches
+        </tspan>
+        <tspan x="-110 -107 -97 -92 -89 -84 -79 -74 -69 -66 -64 -61 -57 -54 -51 -42 -34 -29 -27 -22 -17 -12 -8 0 5 10 15 19 22 26 30 33 38 43 47 51 62 69 74 77 82 87 92 101 105 110 121 126 130 133 138"
+               y="24">inprobabilisticmethods,physics-basedmethodsanddata-
+        </tspan>
+        <tspan x="-110 -105 -101 -97 -92 -85 -77 -73 -70 -65 -60 -55 -51 -46 -40 -35 -28 -20 -15 -13 -5 -1 4 9 14 19 21 26 31 38 43 49 54 58 61 68 73 77 79 84 88 96 100 105 110 114 119 123 128 133 137"
+               y="36">basedmethods.Themainadvantageofdatadrivenapproaches
+        </tspan>
+        <tspan x="-110 -107 -100 -97 -92 -84 -80 -75 -71 -66 -62 -57 -49 -44 -37 -29 -24 -20 -15 -7 -4 1 8 16 19 24 29 32 37 42 47 56 61 66 71 78 81 85 90 95 103 107 112 117 122 129 131 136"
+               y="48">istheabsenceofaneedforathoroughknowledgeaboutthe
+        </tspan>
+        <tspan x="-110 -106 -101 -96 -93 -88 -80 -76 -71 -68 -63 -60 -58 -53 -48 -43 -38 -33 -29 -27 -22 -18 -12 -8 -3 2 6 9 12 17 22 28 33 39 42 45 51 54 59 64 68 74 78 83 88 92 95 98 103 108 110 115 120 125 131 136"
+               y="60">equipment,i.e.physicalequationsofitsinnerfunctioning.The
+        </tspan>
+        <tspan x="-110 -107 -102 -100 -95 -92 -90 -85 -80 -76 -71 -68 -59 -54 -49 -47 -40 -35 -31 -21 -19 -14 -5 3 7 12 16 20 24 28 37 41 46 51 55 60 63 71 75 80 90 93 97 106 111 115 120 124 128 133 138"
+               y="72">relationshipbetweenthemeasuredsensorsandthedegrada-
+        </tspan>
+        <tspan x="-110 -107 -105 -100 -90 -87 -79 -74 -71 -68 -63 -59 -56 -53 -44 -40 -36 -33 -30 -22 -18 -15 -11 -1 2 5 10 23 28 32 35 44 49 53 55 60 70 78 82 87 92 94 99 108 111 115 120 123 128 131 136"
+               y="84">tionisdirectlyestimatedfromdatausingmachinelearning
+        </tspan>
+        <tspan x="-110 -102 -98 -95 -90 -85 -80 -76 -71 -67 -62 -57 -49 -45 -38 -33 -30 -27 -24 -19 -14 -12 -7 -1 4 8 13 16 21 27 32 36 39 46 51 54 59 67 70 77 84 91 95 99 104 112 116 121 125 129 131 136"
+               y="96">methods,suchasartifcialneuralnetworks(ANNs),Gaussian
+        </tspan>
+        <tspan x="-110 -105 -102 -97 -92 -88 -84 -80 -76 -72 -64 -61 -56 -52 -47 -37 -33 -28 -25 -22 -17 -10 -6 2 6 14 19 24 34 39 42 47 51 55 63 67 72 75 83 89 94 98 100 105 110 119 124 128 131 136"
+               y="108">processes,fuzzysystems,amongothers[2].Besidesbeing
+        </tspan>
+        <tspan x="-110 -102 -97 -94 -87 -82 -77 -73 -70 -65 -62 -55 -51 -46 -38 -33 -29 -24 -20 -16 -12 -9 -6 1 6 11 16 18 21 25 30 35 38 42 47 55 59 64 69 71 76 83 86 90 95 98 103 106 111 118 123 128 131 136"
+               y="120">morefexibleandgenerallyapplicable,machinelearningbased
+        </tspan>
+        <tspan x="-110 -106 -101 -96 -92 -88 -83 -79 -74 -69 -62 -57 -53 -48 -40 -35 -31 -27 -18 -14 -9 -6 -1 3 7 11 14 19 27 30 35 43 48 52 55 59 64 67 75 79 84 88 96 101 108 113 118 123 126 129 134 138"
+               y="131">approacheshavebeensurpassingtheperformanceofphysics-
+        </tspan>
+        <tspan x="-110 -105 -101 -97 -92 -84 -76 -72 -69 -64 -59 -54 -47 -43 -38 -35" y="143">basedmethods[3].</tspan>
+        <tspan x="-100 -94 -89 -82 -79 -74 -70 -66 -62 -58 -54 -51 -46 -38 -36 -31 -28 -23 -20 -16 -12 -6 -3 4 12 17 22 25 28 32 36 39 44 51 55 60 64 67 71 79 86 88 95 100 104 108 110 113 118 123 125 130 133 136"
+               y="155">Theincreasinginterestinmonitoringsystemsisparticularly
+        </tspan>
+        <tspan x="-110 -105 -100 -97 -95 -90 -86 -81 -76 -74 -64 -62 -52 -44 -42 -37 -27 -22 -17 -10 -5 3 7 12 17 20 23 27 32 34 37 42 47 51 59 68 70 75 85 90 95 102 107 115 118 123 126 131 134 137"
+               y="167">noticeableinwindpowerapplications.Windpowerresults
+        </tspan>
+        <tspan x="-110 -107 -104 -99 -86 -83 -78 -68 -63 -59 -50 -45 -36 -32 -29 -20 -15 -10 2 5 10 13 18 23 28 39 48 50 55 66 71 76 79 84 87 92 97 106 109 118 125 133 136"
+               y="179">fromtheuseofairfowthroughWindTurbines(WT)to
+        </tspan>
+    </text>
+    <g transform="matrix(1.33333 0 0 -1.33333 483 416)">
+        <text transform="matrix(1 0 0 -1 -50 -18)" style="-inkscape-font-specification:NimbusRomNo9L-Regu" font-size="8"
+              font-family="NimbusRomNo9L">
+            <tspan x="0 4 7 11 15 19 26 30 34 38 40 44 47 52 59 66 69 72 74 78 82 84 88 91 94 99 101 105 110 114 117 120 124 128 131 135 138 142 147 149 153 155 159 162 166 169 173 178 182 185 189 191 195 199 203 208 210 214 219 223 227 231 234 237 241 243 247 249"
+                   y="0">Fig.1.TypicalWTstructure:(1)blades,(2)rotor,(3)gearbox,(4)generator,
+            </tspan>
+            <tspan x="0 3 7 12 16 20 23 26 28 32 36 39 44 47 51 56 60 63 72 75 79 82 84 88 97 100 104 111 114 118 123 125 129 135 139 141 146 151 155 159 163 165 169 175 178 181 185 194 196 200 203"
+                   y="9">(5)bearings,(6)yawsystemand(7)tower.Adaptedfrom[6].
+            </tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 -50 -64)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+              font-size="10" font-family="NimbusRomNo9L">
+            <tspan x="0 5 8 13 18 21 26 34 36 41 49 57 61 66 71 75 80 83 87 92 98 103 108 115 119 122 128 135 140 143 147 156 159 163 167 172 175 178 185 188 196 204 208 211 215 220 225 231 236 238 243 248"
+                   y="0">providethemechanicalpower,whichresultsinaclean,plen-
+            </tspan>
+            <tspan x="0 3 6 9 14 21 25 30 39 42 47 52 56 63 67 72 75 84 89 93 101 105 112 116 121 126 129 134 138 145 150 159 163 168 173 176 181 184 193 196 198 206 210 215 217 224 229 234 238 241 246"
+                   y="12">tifulandrenewablepowersource.Toexploreitsfullenergy
+            </tspan>
+            <tspan x="0 5 9 14 19 22 27 29 32 37 47 52 57 60 64 69 72 75 79 82 89 98 109 114 117 126 130 133 137 142 147 152 157 160 162 172 175 180 184 187 191 194 197 201 211 214 223 227 231 239 244 247"
+                   y="24">generationpotential,WTarefrequentlyinstalledinremote
+            </tspan>
+            <tspan x="0 4 9 18 23 27 30 34 42 47 51 56 59 62 67 72 80 84 89 92 99 103 108 111 117 125 130 134 138 143 148 152 155 161 164 166 173 178 183 187 193 200 203 205 213 218 223 228 231 236 238 241 246"
+                   y="36">andharshenvironments[4].Moreover,itscostwithoperation
+            </tspan>
+            <tspan x="0 4 9 18 25 30 33 38 40 45 50 54 59 64 71 74 81 86 91 96 101 107 112 117 120 125 130 142 147 153 156 161 169 171 176 179 184 190 197 200 205 213 216 221 224 235 239 244 248"
+                   y="48">andmaintenanceisabout10-15%ofthetotalwindfarmcost
+            </tspan>
+            <tspan x="0 4 9 18 23 28 31 36 41 52 57 64 67 72 79 82 87 90 94 100 104 109 113 119 124 131 136 139 142 146 151 156 159 167 176 186 189 194 197 203 210 215 223 225 234 236 241 246 249"
+                   y="60">and20-25%ofthetotalcostofoffshoreWT[5].Duetothat,
+            </tspan>
+            <tspan x="0 9 20 25 29 34 43 48 51 54 58 62 72 76 85 88 91 95 100 104 114 119 123 128 133 136 141 145 148 152 161 164 169 177 180 185 194 198 203 208 211 214 218 223 225 228 233 243 248"
+                   y="72">WThavearisenasstrongcandidatesfortheapplicationof
+            </tspan>
+            <tspan x="0 8 13 18 20 23 28 32 34 39 49 53 58 62 65 69 77 81 88 97 102 105 115 118 123 128 132 135 141 145 149 152 155 159 167 171 173 178 183 192 195 200 203 205 210 214 223 228 232 235 244 247"
+                   y="84">monitoringsystems.Morespecifcally,sincefailuredatais
+            </tspan>
+            <tspan x="0 4 8 13 16 20 25 31 39 44 49 51 54 59 62 65 70 79 82 87 91 94 98 106 113 121 123 126 135 140 145 147 156 159 163 168 171 177 182 187 190 194 198 201 204 209 217 225 230 235 240 243 247"
+                   y="96">scarce,monitoringsystemswithonlyfaultdetectionmodules
+            </tspan>
+            <tspan x="0 4 8 11 14 23 27 35 39 48 53 58 60 63 68 77 84 87 90 98 107 111 116 121 130 135 140 147 152 156 161 168 171 175 183 188 193 195 203 207 211 220 225 229 234 239 244 247"
+                   y="108">ariseasanoptionwithagoodcompromisebetweenbenefts
+            </tspan>
+            <tspan x="0 4 9 18 22 27 31 34 38" y="120">andcosts.</tspan>
+            <tspan x="10 21 24 29 34 36 41 45 52 61 71 74 82 86 91 99 104 109 113 117 126 131 138 143 146 150 155 160 163 170 173 178 181 186 189 195 200 204 209 212 217 222 227 233 238 243 248"
+                   y="133">AtypicalWTiscomposedofblades,rotor,gearbox,gen-
+            </tspan>
+            <tspan x="0 4 8 12 15 20 23 30 35 40 44 47 50 55 60 64 71 76 80 92 96 101 105 108 112 125 129 134 144 147 151 159 163 171 176 184 189 194 199 201 206 209 213 223 226 235 241 244 249"
+                   y="145">erator,bearings,yawsystemandtowerasdepictedinFig.
+            </tspan>
+            <tspan x="0 5 12 19 27 32 37 47 51 54 62 66 71 79 84 89 94 98 103 106 110 117 120 125 134 139 144 148 151 156 161 171 174 182 187 192 202 207 215 217 222 232 239 244 248"
+                   y="157">1.Amongallcomponents,thegearboxisoneofthemost
+            </tspan>
+            <tspan x="0 4 8 11 13 16 20 25 28 33 37 40 45 49 57 60 66 68 75 80 88 93 98 106 109 113" y="169">
+                critical,sinceitisamongthe
+            </tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 71 -233)" style="-inkscape-font-specification:CMR10" font-weight="400"
+              font-size="10" font-family="CMR10">
+            <tspan x="0" y="0">3</tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 79 -233)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+              font-size="10" font-family="NimbusRomNo9L">
+            <tspan x="0 4 9 14 18 23 27 29 34 42 49 51 56 61 67 71 76 79 83 87 91 96 101 106 114 117" y="0">
+                subsystemsthatcorrespondto
+            </tspan>
+            <tspan x="-129 -126 -121 -114 -106 -101 -99 -94 -90 -88 -85 -76 -71 -65 -62 -57 -49 -46 -41 -38 -36 -31 -27 -19 -15 -10 -6 -1 2 9 12 17 21"
+                   y="12">themajorityofthefailureevents[6].
+            </tspan>
+            <tspan x="-119 -112 -108 -103 -100 -95 -90 -81 -78 -74 -69 -66 -59 -54 -50 -47 -43 -38 -36 -33 -28 -19 -11 -7 -4 1 6 11 18 23 28 32 36 45 50 58 63 66 71 74 79 82 84 89 98 102 105 110 115 119"
+                   y="26">Gearboxfaultdetectionmethodsbasedonvibrationsignal
+            </tspan>
+            <tspan x="-129 -124 -120 -115 -108 -103 -99 -94 -86 -83 -78 -71 -66 -61 -58 -54 -50 -44 -39 -33 -25 -21 -16 -8 -5 0 4 9 14 19 26 31 35 40 46 50 55 60 65 70 75 79 84 91 96 103 107 112 116 119"
+                   y="38">havebeentheobjectofmanyrecentworks[7,8,9].However,
+            </tspan>
+            <tspan x="-129 -122 -118 -115 -110 -105 -97 -92 -88 -84 -80 -76 -71 -68 -64 -55 -53 -44 -41 -36 -31 -25 -21 -16 -11 -4 1 9 12 17 21 27 30 36 40 45 53 58 63 66 74 79 83 86 90 95 101 106 114 117"
+                   y="50">astudypresentedin[10]showedthatitcanonlydetectupto
+            </tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 -50 -295)" style="-inkscape-font-specification:CMR10" font-weight="400"
+              font-size="10" font-family="CMR10">
+            <tspan x="0 5 10" y="0">50%</tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 -29 -295)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+              font-size="10" font-family="NimbusRomNo9L">
+            <tspan x="0 5 11 15 18 23 28 33 37 40 45 50 58 61 66 68 71 76 79 84 88 93 100 104 109 114 118 123 128 135 140 145 149 152 155 158 162 166 173 176 181 186 188 194 199 203 206 210 215 218 220 225"
+                   y="0">ofallgearboxfailures.Hence,anauxiliaryfaultdetection
+            </tspan>
+            <tspan x="-21 -13 -8 -3 2 5 13 18 22 26 30 39 44 52 57 60 65 69 76 84 88 93 97 102 105 109 117 122 127 129 137 139 147 152 156 160 163 166 171 176 178 186 190 195 200 203"
+                   y="12">modulebasedonothermeasurementsisdesirable[11].
+            </tspan>
+            <tspan x="-11 -6 4 9 14 19 22 26 30 39 42 47 56 61 64 69 72 77 84 89 94 96 99 104 109 114 123 126 130 134 139 143 151 159 163 168 178 182 187 190 195 200 203 212 217 221 226"
+                   y="26">Toaddresstheaforementionedissue,manyauthorshave
+            </tspan>
+            <tspan x="-21 -16 -12 -8 -3 2 6 11 20 23 28 33 36 43 48 52 55 59 64 67 69 74 84 92 96 99 104 109 114 122 127 132 135 140 149 154 164 169 176 183 190 202"
+                   y="38">proposedfaultdetectionmethodsbasedonSCADA(
+            </tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 176 -333)" style="-inkscape-font-specification:NimbusRomNo9L-ReguItal"
+              font-size="10" font-family="NimbusRomNo9L">
+            <tspan x="0 4 9 14 18 22" y="0">super-</tspan>
+            <tspan x="-226 -221 -219 -215 -210 -206 -197 -193 -188 -183 -180 -177 -172 -165 -160 -155 -146 -141 -136 -133 -124 -119 -114 -109 -104 -101 -98 -95 -92 -89 -84"
+                   y="12">visorycontrolanddataacquisition
+            </tspan>
+        </text>
+        <text transform="matrix(1 0 0 -1 96 -345)" style="-inkscape-font-specification:NimbusRomNo9L-Regu"
+              font-size="10" font-family="NimbusRomNo9L">
+            <tspan x="0 8 15 20 24 28 33 36 41 48 53 58 61 65 71 77 83 91 97" y="0">)measurements.SCADA</tspan>
+            <tspan x="-146 -144 -136 -128 -124 -119 -114 -111 -108 -103 -96 -92 -87 -78 -74 -69 -64 -59 -57 -53 -50 -47 -44 -39 -31 -27 -22 -18 -15 -11 1 3 8 13 19 24 29 31 34 38 43 46 53 57 61 66 71 74 78 85 92 97 101"
+                   y="12">isacontrolandacquisitionsystemthatcollectsseveralmea-
+            </tspan>
+            <tspan x="-146 -143 -138 -134 -130 -122 -118 -113 -110 -103 -99 -94 -86 -83 -76 -71 -67 -62 -58 -55 -52 -44 -40 -35 -31 -28 -25 -21 -16 -13 -6 -3 5 9 12 18 22 27 35 43 47 50 55 58 62 68 77 83 88 95 100"
+                   y="24">surementsandisusuallyavailableinallcommercialWT.One
+            </tspan>
+            <tspan x="-146 -142 -137 -129 -122 -117 -109 -104 -99 -94 -91 -86 -82 -77 -69 -66 -62 -59 -56 -52 -45 -40 -32 -29 -24 -17 -12 -8 -1 4 11 16 23 30 37 47 52 56 59 66 69 77 82 87 90 92 100"
+                   y="36">commonapproachreliesontheuseofSCADAdatatobuilda
+            </tspan>
+            <tspan x="-146 -139 -134 -129 -124 -119 -114 -107 -105 -100 -92 -87 -82 -79 -71 -67 -61 -56 -52 -47 -43 -38 -35 -30 -24 -19 -12 -5 0 4 9 12 14 19 27 37 42 47 54 59 61 68 73 77 82 86 91 95 100"
+                   y="48">modelofthenormalbehaviorofahealthyWT.Thisapproach
+            </tspan>
+            <tspan x="-146 -144 -135 -130 -126 -121 -116 -114 -111 -101 -97 -93 -89 -85 -82 -78 -74 -64 -61 -51 -46 -37 -30 -25 -22 -14 -10 -1 5 10 15 19 24 27 32 40 49 54 59 63 66 75 79 86 92 101"
+                   y="60">isusuallyreferredtoasNormalBehaviorModels(NBM)
+            </tspan>
+        </text>
+        <image xlink:href="data:image/webp;base64,UklGRhIFAABXRUJQVlA4IAYFAADwMgCdASrpAKQAP83e52u/tb+sKrOLa/A5iWUA1fko5+bU2Jn2RVp0cupb5xG1nwN+lMC71uBoxTS6jGBrkU6Lsi6fczC6n/+iEn+C8NHule/YdtszYdGdLzxTaIUtk+VxkRZaEqrlPnPJfzWZ0XZ+CsKsN3W0+PaOe/oJmLCxNK/Ps2DACpTzosvUHGIO3cbsNnLUeeXEKGzWIws/j4Tc8MZT511g1bkGzRtPlPhwQ+dv+n+sbHtkez8qDIeVePg5De//44RO6MX9aQd365R0utxV5/0cSDs+MN3QW2MPAqrzt/KfrDI6mYxFlAxvc/jOvfechk0vQLD5DsjhgCazsaUzSggXLgREBzqmn8g/7MZ4MUC/w2L8U+PQhewAJrHbxnavEldpIElByMvOpjM80NaxOTV2/OOUTYtjt2XhPfYNwMsAwjV8qOMC0mlBOGRAUwAnNQsxXBs07oWv/NMXkk4rMQ59/qThn3B6Efp/5wyuj1ga9hOVjH6H+5XdneadXsF8y2TwIL4EicEDwqsCuJkVdfgdR5vs7F8COXuWwAD+67G8By2WDw+y0hydGHx9jECiRXGowQDF1pA7w46oK7ah4r3+NiTWA2LY2c3yiKoai0vPp33Gzg7Kt3zHOzCyv9Mv9bbve57IDRKuBSotCzVBgzeucuMfE2Txud4b6kIefAB49xPOljwH0BRWWnuEB6FkdZuq0Yp8qS0ktslN8UdonA7fobB3aS1TnwvKwho+ToTnIWb4/7C8iZEfejOOC5CeoI42K7WMNkz8ji4h1pHsnL3kP2RylpI+xd0h3xP4QOWu2IMNlChItUpH8PHbsDpT61+Za4UYfaLsiwdFcH7pw8exU5389ddgyjsgwGwRRs8Lt/ZBSJorDsa0wwDFr19WgyOvXN4k1rhCNi1o+E15vVDjDpXe2em1+zebts/niKU9h3dlP1Plxtk1IlHWfJBkUdxMgHjSBsCE35Kr9uCJNP0dmezKhMVvVRv42xZXEkOwl5ouqtSte+tu525ubNBzoCF+hmcJNatmHk0F2xST+IDQ+qpWphLr40nwsULkj7vJ+S47f7sC7CfQMbjcysQ1kQHEZj5Et5BDyFbo50ddU8K5MDEsGlLh+FbUg65Q+xcXJbm0TidUHPab0B5jXSnP+0U+LTzBSlT5epQBaF9shO8A74rFUtQ8XZ0T/VQ7BPvaDIzUwqAVKb4HSZbyhOOmt6vnGRVd/H7yh0vonKWWO/TfTnZagINsrwh4aIX4IsofH6MpHndSAKb6hvMXEznK1CyVBBx916Tn5YFbI4SoesmOXBsDsA+dvo+aW79ylieQeoCZio1nA2d0fdpu4vPLvPxv2O0ZvL384TjfUZZK5mKMAQly7UvubzQKGWKehgwJXXqGvZiO5KYBwi+6eMQonypT0ESgPoTfyz6D4Fy38bFawhKwaN/N2amzEZnXaIccNNGDgf5OA5IVp+QrOqsIcClTziBXQ6DDfxcgl51rAiRw92Rh+vH1FSx6x/1qyD4MHc6oGNsSfmG8nfiS1EODQmIybiRHInKGoKmoqbOEKeYRH3MQr+gNgMfUY+e78CwKEvYF9KwyE4L4oq7TmcbhTx13oXJsbSoYwoDrmXmIzvd7sLn86tHZeJSMJopGX2t345AHUwkPqD5OJvpypwgZX4ZVFJ1D0piKhgApX7prgBAmQZ3VZHiAAACAHoABaiAAAA=="
+               y="-106" transform="scale(1 -1)" preserveAspectRatio="none"
+               height="106.2" width="150.6" image-rendering="optimizeSpeed"/>
+    </g>
+</svg>

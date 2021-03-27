@@ -138,6 +138,7 @@ li.article {
     align-content: center;
     grid-auto-flow: column;
     justify-content: center;
+    margin-bottom: 0.5em;
 }
 
 li.article > div.icons {
@@ -149,12 +150,15 @@ ul#publication-list > li {
     margin-bottom: 2em;
 }
 
-ul#publication-list > li > ul > li {
-    margin-bottom: 0.5em;
-}
-
 span.article-title {
     font-style: italic;
+}
+
+span.article-title::before {
+    content: '“';
+}
+span.article-title::after {
+    content: '”';
 }
 
 .paper-preview {
@@ -162,24 +166,23 @@ span.article-title {
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.paper-preview > * {
     width: 5em;
     height: 7.071em;
     border: 1px solid black;
 }
 
-.paper-preview > .draft {
+.paper-preview > * {
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.paper-preview > .draft::after {
-    display: block;
+.paper-preview > .text {
     color: #888;
-    content: "DRAFT";
     transform: rotate(-54.74deg) translateY(-0.1em);
     font-size: 1.5em;
+    overflow-wrap: normal;
 }

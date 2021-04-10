@@ -16,6 +16,12 @@ class BibtexValue:
     def unescape(self):
         return self.value.replace('{', '').replace('}', '')
 
+    def __str__(self):
+        return self.unescape()
+
+    def __repr__(self):
+        return f'[{self.key}:{self.value}]'
+
 
 def parse_author_name(author) -> Tuple[str, str]:
     split_at_comma = author.split(',')

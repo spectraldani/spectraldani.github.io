@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title}</title>
+    <meta name="description"
+          content="{description}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{title}">
+    <meta property="og:url" content="https://spectral.space/pubs/{key}.html">
+    <meta property="og:description"
+          content="{description}">
+    <!--  <meta property="og:image" content="https://spectral.space/icon/ogimage.jpg">-->
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+
+    <link rel="stylesheet" type="text/css" href="../index.css">
+    <link rel="stylesheet" type="text/css" href="./paper.css">
+</head>
+<body>
+<div id="box-holder">
+    <div id="box-header">
+        {thumbnail_tag}
+        <div class="title-holder">
+            <h1 class="title">{title}</h1>
+            <span>{authors}</span>
+            <span class="links">{links}</span>
+        </div>
+    </div>
+    {extra_content}
+</div>
+</body>
+</html>

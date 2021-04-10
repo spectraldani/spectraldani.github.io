@@ -1,6 +1,8 @@
+import importlib.util
 import re
 from importlib import import_module
 from pathlib import Path
+from typing import Dict
 
 from bs4 import BeautifulSoup
 
@@ -11,24 +13,32 @@ tag_regex = re.compile(r'dani:(.+)')
 
 
 def main():
+    for path_to_process in raw_folder.rglob('*.export.py'):
+        cook_py(path_to_process)
     for path_to_process in raw_folder.rglob('*.export.html'):
-        with path_to_process.open('r', encoding='utf-8') as f:
-            soup = BeautifulSoup(f.read(), "html.parser")
-            for tags_to_process in soup.find_all(tag_regex):
-                module_name = tag_regex.match(tags_to_process.name)[1].replace('-', '_')
-                module = import_module('components.' + module_name)
-                tags_to_process.replace_with(module.render())
-
-        processed_path = path_to_process.relative_to(raw_folder).with_name(path_to_process.name.replace('.export', ''))
-        cooked_path = (cooked_folder / processed_path)
-        with cooked_path.open('w', encoding='utf-8') as f:
-            f.write(str(soup))
+        cook_html(path_to_process)
 
 
-def test_bibtex():
-    import components.bibliography
-    for p in sorted(components.bibliography.publications, key=lambda x: x.date):
-        print(components.bibliography.render_bibentry(p))
+def cook_py(path):
+    spec = importlib.util.spec_from_file_location('', path)
+    script = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(script)
+
+    root_path = cooked_folder / path.relative_to(raw_folder).parent
+    render_result: Dict[str, str] = script.render() or {}
+    for filename, content in render_result.items():
+        (root_path / filename).write_text(content, encoding='utf-8')
+
+
+def cook_html(path):
+    soup = BeautifulSoup(path.read_text(encoding='utf-8'), "html.parser")
+    for tags_to_process in soup.find_all(tag_regex):
+        module_name = tag_regex.match(tags_to_process.name)[1].replace('-', '_')
+        module = import_module('components.' + module_name)
+        tags_to_process.replace_with(module.render())
+    processed_path = path.relative_to(raw_folder).with_name(path.name.replace('.export', ''))
+    cooked_path = (cooked_folder / processed_path)
+    cooked_path.write_text(str(soup), encoding='utf-8')
 
 
 if __name__ == '__main__':

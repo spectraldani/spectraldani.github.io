@@ -31,40 +31,41 @@ def render_icon(link, id, title, label=None):
 
 
 def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
-    body = BeautifulSoup("""<li class="article">
+    soup = BeautifulSoup("""<li class="article">
           <div class="paper-preview"></div>
           <div>
             <span class="authors"></span>.
-            <span class="article-title"></span>.
+            <a class="article-title"></a>.
             <span class="description"></span>
           </div>
           <div class="icons"></div>
         </li>""", 'html.parser')
 
-    body.li.attrs['id'] = entry.key
+    soup.li.attrs['id'] = entry.key
 
-    preview_tag = body.find('div', class_='paper-preview')
+    preview_holder = soup.find('div', class_='paper-preview')
     preview_img_path = './pubs/thumbs/{0}.svg'.format(entry.key)
     preview_img = misc.get_asset(preview_img_path)
     if preview_img.exists():
-        img_tag = body.new_tag('img', alt='', src=preview_img_path)
-        img_tag.attrs['width'] = '5'
-        img_tag.attrs['height'] = '7.071'
-        preview_tag.append(img_tag)
+        preview_tag = soup.new_tag('img', alt='', src=preview_img_path)
+        preview_tag.attrs['width'] = '5'
+        preview_tag.attrs['height'] = '7.071'
     else:
-        preview_div = body.new_tag('div', attrs={"class": "text"})
+        preview_tag = soup.new_tag('div', attrs={"class": "text"})
         if entry.type == 'Unpublished':
-            preview_div.string = 'DRAFT'
+            preview_tag.string = 'DRAFT'
         else:
-            preview_div.string = 'NO\u00A0IMG'
-        preview_tag.append(preview_div)
+            preview_tag.string = 'NO\u00A0IMG'
+    preview_holder.append(preview_tag)
 
     # Title
-    title_span: bs4.Tag = body.find('span', class_='article-title')
-    title_span.string = entry['title'].unescape()
+    title_tag: bs4.Tag = soup.find('a', class_='article-title')
+    title_tag.string = entry['title'].unescape()
+    if misc.get_asset(f'pubs/{entry.key}.html').exists():
+        title_tag.attrs['href'] = f'./pubs/{entry.key}.html'
 
     # Authors
-    authors_span: bs4.Tag = body.find('span', class_='authors')
+    authors_span: bs4.Tag = soup.find('span', class_='authors')
     author_list = [' '.join(x[::-1]) for x in entry.authors]
     if len(author_list) > 1:
         authors_span.string = '{0}, and {1}'.format(', '.join(author_list[:-1]), author_list[-1])
@@ -72,7 +73,7 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
         authors_span.string = author_list[0]
 
     # Icons
-    icons_tag = body.find('div', class_='icons')
+    icons_tag = soup.find('div', class_='icons')
     if 'url' in entry.values or 'doi' in entry.values:
         if 'url' in entry.values:
             external_url = entry['url'].unescape()
@@ -100,7 +101,7 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
         ))
 
     # Description
-    description_span: bs4.Tag = body.find('span', class_='description')
+    description_span: bs4.Tag = soup.find('span', class_='description')
 
     if entry.type == 'InProceedings':
         description_span.string = 'In: {0}'.format(entry['booktitle'].unescape())
@@ -125,7 +126,7 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
         description_span.string += entry['institution'].unescape()
     else:
         raise Exception('Unknown entry type: {0}'.format(entry.type))
-    return body
+    return soup
 
 
 def render() -> BeautifulSoup:

@@ -1,0 +1,45 @@
+div#box-holder {
+    /*border: 2px solid black;*/
+    /*padding: 1em;*/
+}
+
+div#box-header {
+    display: flex;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+    padding: 1.5rem 0px;
+    margin: 0.5rem 0px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.paper-preview {
+    width: 8em;
+    height: auto;
+    flex: 0 0 8em;
+    align-self: center;
+}
+
+body {
+    display: flex;
+    align-items: center;
+}
+
+.title-holder {
+    text-align: center;
+    flex: 1 0 0;
+}
+
+a {
+    display: inline-flex;
+    align-items: center;
+}
+
+a > svg {
+    margin-right: 0.3em;
+}
+
+div#box-header span.links {
+    display: flex;
+    justify-content: space-evenly;
+}

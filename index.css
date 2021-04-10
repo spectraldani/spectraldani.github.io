@@ -32,6 +32,10 @@ a {
     text-decoration: none;
 }
 
+a:not([href]) {
+    color: inherit;
+}
+
 .title {
     text-align: center;
     font-weight: 600;
@@ -150,14 +154,14 @@ ul#publication-list > li {
     margin-bottom: 2em;
 }
 
-span.article-title {
+.article-title {
     font-style: italic;
 }
 
-span.article-title::before {
+.article-title::before {
     content: '“';
 }
-span.article-title::after {
+.article-title::after {
     content: '”';
 }
 
@@ -166,7 +170,6 @@ span.article-title::after {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 5em;
     height: 7.071em;
     border: 1px solid black;

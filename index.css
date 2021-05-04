@@ -1,9 +1,14 @@
+:root {
+    --main-width: 768px;
+}
+
 * {
     box-sizing: border-box;
 }
 
 html {
     background-color: #1d98ff;
+    height: 100%;
 }
 
 hr {
@@ -15,16 +20,26 @@ hr {
 }
 
 body {
-    background-color: #fff;
-    margin: 0 auto;
-    max-width: 50em;
-    min-height: 100vh;
-    padding: 1em;
-    font-family: "Segoe UI", Roboto, Ubuntu, "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #4a4a4a;
+    font-family: "Segoe UI", Roboto, Ubuntu, "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    align-content: flex-start;
+    min-height: 100%;
+}
+
+main {
+    background-color: #fff;
+    max-width: var(--main-width);
+    padding: 1em;
+    flex: 1;
 }
 
 a {
@@ -100,7 +115,7 @@ div#icon-holder {
     font-size: 1.5em;
 }
 
-a.icon {
+.icon {
     height: 1.5em;
     width: 1.5em;
     align-items: center;
@@ -108,13 +123,13 @@ a.icon {
     justify-content: center;
 }
 
-div#icon-holder > div.social {
-    font-size: 0.7em;
-}
-
-a.icon > svg {
+.icon > svg {
     display: inline-block;
     height: 1em;
+}
+
+div#icon-holder > div.social {
+    font-size: 0.7em;
 }
 
 /*Publication list*/
@@ -161,6 +176,7 @@ ul#publication-list > li {
 .article-title::before {
     content: '“';
 }
+
 .article-title::after {
     content: '”';
 }

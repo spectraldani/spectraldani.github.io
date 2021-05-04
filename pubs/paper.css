@@ -20,7 +20,7 @@ div#box-header {
     align-self: center;
 }
 
-body {
+main {
     display: flex;
     align-items: center;
 }

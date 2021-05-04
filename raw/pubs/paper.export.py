@@ -6,7 +6,7 @@ import components.misc as misc
 from components.bibliography import publications
 from components.bibtex import BibtexEntry
 
-template_html = misc.get_asset('pubs/templates/paper.html').read_text()
+template_html: str = misc.get_asset('pubs/templates/paper.html').read_text()
 
 
 def render():
@@ -19,7 +19,7 @@ def render():
 
 def svg_icon(id):
     return f'''<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-        <use xlink:href="../assets/icons/publication.svg#{id}" width="100"/>
+        <use xlink:href="/assets/icons/publication.svg#{id}" width="100"/>
     </svg>'''.strip()
 
 

@@ -25,7 +25,7 @@ def render_icon(link, id, title, label=None):
     return BeautifulSoup(f"""
     <a class="icon" title="{title}" {'aria-label="{0}"'.format(label) if label else ''} href="{link}">
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-        <use xlink:href="assets/icons/publication.svg#{id}" width="100"/>
+        <use xlink:href="/assets/icons/publication.svg#{id}" width="100"/>
     </svg>
     </a>""", 'html.parser')
 
@@ -44,8 +44,8 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
     soup.li.attrs['id'] = entry.key
 
     preview_holder = soup.find('div', class_='paper-preview')
-    preview_img_path = './pubs/thumbs/{0}.svg'.format(entry.key)
-    preview_img = misc.get_asset(preview_img_path)
+    preview_img_path = '/pubs/thumbs/{0}.svg'.format(entry.key)
+    preview_img = misc.get_asset('.' + preview_img_path)
     if preview_img.exists():
         preview_tag = soup.new_tag('img', alt='', src=preview_img_path)
         preview_tag.attrs['width'] = '5'

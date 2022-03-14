@@ -26,6 +26,10 @@
         justify-content: flex-start;
     }
 
+    main {
+        max-width: 100%
+    }
+
     #sidebar {
         margin-left: 0;
     }
@@ -35,6 +39,10 @@
     body {
         flex-direction: column;
         align-items: center;
+    }
+
+    main {
+        max-width: var(--main-width);
     }
 
     #sidebar {

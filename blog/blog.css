@@ -1,0 +1,46 @@
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-auto-flow: row;
+    /* align-items: end; */
+}
+
+header > picture {
+    grid-area: 1/1/-1/1;
+}
+
+header > picture > img {
+    width: auto;
+    height: 6em;
+    margin-right: 1em;
+    border-radius: 100%;
+}
+
+header > h1 {
+    grid-area: 1/2;
+    margin: 0;
+}
+
+header > div {
+    grid-column: 2/2;
+}
+
+hr {
+    margin-top: 0.5rem;
+}
+
+main > h1 {
+    margin: 0;
+}
+
+.tags {
+    font-size: 0.8em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.tags > span > span::after {
+    content: ":";
+}

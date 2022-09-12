@@ -1,7 +1,14 @@
+<!--Font Awesome Pro 6.1.1 by @fontawesome - CC BY 4.0 -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
     <defs>
         <g id="back">
-            <path d="M19 4l-7 8 7 8 1 1h-1l-2 3h-1L5 13l-1-1 1-1L16 0h1l2 3h1l-1 1z" fill="currentColor"/>
+            <path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm2.6 16.2a1.5 1.5 0 1 1-2.2 2.1l-5.2-5.2a1.5 1.5 0 0 1 0-2.2l5.2-5.2a1.5 1.5 0 1 1 2.2 2.1L10.4 12Z"
+                  fill="currentColor"/>
+        </g>
+        <g id="up">
+            <path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm6.3 14.6c-.6.5-1.5.5-2.1 0L12 10.4l-4.2 4.2a1.5 1.5 0 1 1-2.1-2.2l5.2-5.2a1.5 1.5 0 0 1 2.2 0l5.2 5.2c.6.6.6 1.6 0 2.2z"
+                  fill="currentColor"
+            />
         </g>
     </defs>
 </svg>

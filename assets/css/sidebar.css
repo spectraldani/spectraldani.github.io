@@ -60,3 +60,9 @@
     margin-top: 0.25em;
     margin-bottom: 0.25em;
 }
+
+#sidebar > nav > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

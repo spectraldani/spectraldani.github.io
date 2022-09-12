@@ -8,7 +8,7 @@
 <meta content="" name="description"/>
 <meta content="website" property="og:type"/>
 <meta content="Evaluation of Data Based Normal Behavior Models for Fault Detection in Wind Turbines" property="og:title"/>
-<meta content="https://spectral.space/pubs/Souza2019-wind.html" property="og:url"/>
+
 <meta content="" property="og:description"/>
 
 <link href="/icon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
@@ -16,6 +16,7 @@
 <link href="/icon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/assets/css/index.css" rel="stylesheet" type="text/css"/>
 <link href="/assets/css/paper.css" rel="stylesheet" type="text/css"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" rel="stylesheet"/>
 </head>
 <body>
 
@@ -27,16 +28,18 @@
 </picture>
 <h1 class="title">Daniel Augusto</h1>
 <nav>
-<a href="/">
+<ul>
+<li><a href="/">
 <span class="icon">
 <svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
 <use width="100" xlink:href="/assets/icons/sidebar.svg#back"></use>
 </svg>
 </span>
 
-                    Return to main page
-                </a>
+                    Return to front page
+                </a></li>
 
+</ul>
 </nav>
 </div>
 
@@ -56,7 +59,17 @@
  Paper webpage</a></span>
 </div>
 </div>
+<div lang="">
+</div>
 </div>
 </main>
 </body>
+<script crossorigin="anonymous" integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
+
+<script>
+    for (const e of document.getElementsByTagName('main')[0].getElementsByClassName('math')) {
+        const is_display = (e.classList[1] === 'display');
+        katex.render(e.innerText, e, {displayMode: is_display})
+    }
+</script>
 </html>

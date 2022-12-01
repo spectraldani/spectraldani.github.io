@@ -14,10 +14,11 @@ div#box-header {
 }
 
 .paper-preview {
-    width: 8em;
+    width: auto;
     height: auto;
     flex: 0 0 8em;
     align-self: center;
+    aspect-ratio: 5 / 7.071;
 }
 
 main {

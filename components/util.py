@@ -1,8 +1,12 @@
+import collections
+import re
 from itertools import filterfalse, tee
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+js_python = re.compile(r"\bpy`(.+?)`")
 
 raw_path = Path('./raw')
 cooked_path = Path('./cooked')
@@ -17,6 +21,22 @@ def get_asset(path):
         return raw_path / path
     else:
         return cooked_path / path
+
+
+class FormatValues(collections.defaultdict):
+    def __init__(self, **kwargs):
+        super().__init__(lambda: '', **kwargs)
+
+
+def format_html_str(x: str, format_values: dict) -> str:
+    x_soup = make_soup(x)
+    for tag in x_soup.find_all('script'):
+        if tag.string is not None:
+            js_script = str(tag.string)
+            js_script = js_python.sub(lambda m: format_values[m.group(1)], js_script)
+            js_script = js_script.replace('{', '{{').replace('}', '}}')
+            tag.string.replace_with(js_script)
+    return str(x_soup).format_map(format_values)
 
 
 def partition(pred, iterable):

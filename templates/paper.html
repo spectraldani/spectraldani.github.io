@@ -37,7 +37,7 @@
             </div>
         </div>
         <div lang="{extra_lang}">
-        {extra_content}
+            {extra_content}
         </div>
     </div>
 </main>
@@ -47,9 +47,9 @@
         crossorigin="anonymous"></script>
 <!--suppress JSUnresolvedVariable -->
 <script>
-    for (const e of document.getElementsByTagName('main')[0].getElementsByClassName('math')) {{
+    for (const e of document.getElementsByTagName('main')[0].getElementsByClassName('math')) {
         const is_display = (e.classList[1] === 'display');
-        katex.render(e.innerText, e, {{displayMode: is_display}})
-    }}
+        katex.render(e.innerText, e, {displayMode: is_display})
+    }
 </script>
 </html>

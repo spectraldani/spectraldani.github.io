@@ -47,14 +47,13 @@ def render_entry(entry: BibtexEntry):
         for name, link in entry.extra_urls.items():
             links.append(f"<a href='{link}'>{icon.render('external', 'publication')} {name}</a>")
 
-    return template_html.format(
-        key=entry.key,
-        title=entry['title'],
-        authors=authors,
-        description='',
-        thumbnail_tag=str(preview_holder),
-        links=' '.join(links),
-        extra_content='',
-        extra_sidebar='',
-        extra_lang='',
+    return util.format_html_str(
+        template_html,
+        util.FormatValues(
+            key=entry.key,
+            title=entry['title'],
+            authors=authors,
+            thumbnail_tag=str(preview_holder),
+            links=' '.join(links),
+        )
     )

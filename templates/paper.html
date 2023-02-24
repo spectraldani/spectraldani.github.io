@@ -8,7 +8,7 @@
           content="{description}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{title}">
-    <meta property="og:url" content="https://spectral.space/pubs/{key}.html">
+    <!--    <meta property="og:url" content="https://spectral.space/pubs/{key}.html">-->
     <meta property="og:description"
           content="{description}">
     <!--  <meta property="og:image" content="https://spectral.space/icon/ogimage.jpg">-->
@@ -18,11 +18,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
 
-    <link rel="stylesheet" type="text/css" href="/index.css">
-    <link rel="stylesheet" type="text/css" href="./paper.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/paper.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"
+          integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" crossorigin="anonymous">
 </head>
 <body>
-<dani:sidebar/>
+<dani:sidebar>{extra_sidebar}</dani:sidebar>
 <main>
     <div id="box-holder">
         <div id="box-header">
@@ -33,8 +36,20 @@
                 <span class="links">{links}</span>
             </div>
         </div>
+        <div lang="{extra_lang}">
         {extra_content}
+        </div>
     </div>
 </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+        integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p"
+        crossorigin="anonymous"></script>
+<!--suppress JSUnresolvedVariable -->
+<script>
+    for (const e of document.getElementsByTagName('main')[0].getElementsByClassName('math')) {{
+        const is_display = (e.classList[1] === 'display');
+        katex.render(e.innerText, e, {{displayMode: is_display}})
+    }}
+</script>
 </html>

@@ -1,12 +1,11 @@
 from pathlib import Path
 
-from bs4 import BeautifulSoup
-
-import components.misc as misc
-from components.bibliography import publications
+import components.util as util
+from components import icon
+from components.bibliography import publications, get_preview_tag
 from components.bibtex import BibtexEntry
 
-template_html: str = misc.get_asset('pubs/templates/paper.html').read_text()
+template_html: str = Path('./templates/paper.html').read_text()
 
 
 def render():
@@ -17,27 +16,10 @@ def render():
     }
 
 
-def svg_icon(id):
-    return f'''<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-        <use xlink:href="/assets/icons/publication.svg#{id}" width="100"/>
-    </svg>'''.strip()
-
-
 def render_entry(entry: BibtexEntry):
-    soup = BeautifulSoup('<div class="paper-preview"></div>', 'html.parser')
+    soup = util.make_soup('<div class="paper-preview"></div>')
     preview_holder = soup.div
-    preview_img_path = './thumbs/{0.key}.svg'.format(entry)
-    preview_img = misc.get_asset('pubs' / Path(preview_img_path))
-    if preview_img.exists():
-        preview_tag = soup.new_tag('img', alt='', src=preview_img_path)
-        preview_tag.attrs['width'] = '5'
-        preview_tag.attrs['height'] = '7.071'
-    else:
-        preview_tag = soup.new_tag('div', attrs={"class": "text"})
-        if entry.type == 'Unpublished':
-            preview_tag.string = 'DRAFT'
-        else:
-            preview_tag.string = 'NO\u00A0IMG'
+    preview_tag = get_preview_tag(entry, soup)
     preview_holder.append(preview_tag)
 
     author_list = [' '.join(x[::-1]).replace(' ', '\u00A0') for x in entry.authors]
@@ -52,17 +34,18 @@ def render_entry(entry: BibtexEntry):
             external_url = entry['url'].unescape()
         else:
             external_url = 'https://doi.org/' + entry['doi'].unescape()
-        links.append(f'''
-        <a href='{external_url}'>{svg_icon('external')} Paper webpage</a>
-        '''.strip())
+        links.append(f"<a href='{external_url}'>{icon.render('external', 'publication')} Paper webpage</a>")
     if 'eprint' in entry.values:
-        links.append(f'''
-        <a href='{'https://arxiv.org/abs/' + entry['eprint'].unescape()}'>{svg_icon('arxiv')} Arxiv</a>
-        '''.strip())
+        links.append(
+            f"<a href='{'https://arxiv.org/abs/' + entry['eprint'].unescape()}'>{icon.render('arxiv', 'publication')}"
+            "Arxiv</a>"
+        )
     if 'github_url' in entry.values:
-        links.append(f'''
-        <a href='{entry['github_url']}'>{svg_icon('github')} Github</a>
-        '''.strip())
+        links.append(f"<a href='{entry['github_url']}'>{icon.render('github', 'publication')} Github</a>")
+
+    if entry.extra_urls is not None:
+        for name, link in entry.extra_urls.items():
+            links.append(f"<a href='{link}'>{icon.render('external', 'publication')} {name}</a>")
 
     return template_html.format(
         key=entry.key,
@@ -72,4 +55,6 @@ def render_entry(entry: BibtexEntry):
         thumbnail_tag=str(preview_holder),
         links=' '.join(links),
         extra_content='',
+        extra_sidebar='',
+        extra_lang='',
     )

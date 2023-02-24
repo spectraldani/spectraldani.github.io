@@ -2,7 +2,7 @@ import datetime
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Optional
 
 entry_re = re.compile(r'^\s*@(\w+)\{(.+),')
 value_re = re.compile(r'^\s*(\w+)\s*=\s*(.+),')
@@ -54,13 +54,25 @@ class BibtexEntry:
     @property
     def supervisor(self) -> List[Tuple[str, str]]:
         """"Returns the 'supervisor' entry properly parsed as (last name, rest)"""
-        assert 'author' in self.values
+        assert 'supervisor' in self.values
         return [parse_author_name(x.strip()) for x in self['supervisor'].unescape().split('and')]
 
     @property
     def date(self) -> datetime.date:
         plain_date = self['date'].unescape()
         return datetime.date(*[int(x) if x is not None else 1 for x in date_re.match(plain_date).groups()])
+
+    @property
+    def extra_urls(self) -> Optional[Dict[str, str]]:
+        urls = self.values.get('extra_urls')
+        if urls is not None:
+            # noinspection PyTypeChecker
+            return dict(
+                entries.split(':', 1)
+                for entries in urls.unescape().split(',')
+            )
+        else:
+            return None
 
 
 def parse_biblatex(path: Path) -> List[BibtexEntry]:

@@ -1,37 +1,14 @@
 import bs4
-from bs4 import BeautifulSoup
 
-import components.misc as misc
+import components.util as util
+from components import icon
 from components.bibtex import parse_biblatex, BibtexEntry
 
-publications = parse_biblatex(misc.get_asset('pubs/entries.bib'))
+publications = parse_biblatex(util.get_asset('/pubs/entries.bib'))
 
 
-# <a class="icon" title="Arxiv" aria-label="Go to paper's archive page"
-# href="https://arxiv.org/abs/1907.01867">
-# <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-# viewBox="0 0 24 24">
-# <use xlink:href="icons.svg#arxiv"></use>
-# </svg>
-# </a>
-# <a class="icon" title="Code" aria-label="Go to paper's GitHub page"
-# href="https://github.com/spectraldani/UnscentedGPLVM">
-# <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512">
-# <use xlink:href="icons.svg#github"></use>
-# </svg>
-# </a>
-
-def render_icon(link, id, title, label=None):
-    return BeautifulSoup(f"""
-    <a class="icon" title="{title}" {'aria-label="{0}"'.format(label) if label else ''} href="{link}">
-    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-        <use xlink:href="/assets/icons/publication.svg#{id}" width="100"/>
-    </svg>
-    </a>""", 'html.parser')
-
-
-def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
-    soup = BeautifulSoup("""<li class="article">
+def render_bibentry(entry: BibtexEntry):
+    soup = util.make_soup("""<li class="article">
           <div class="paper-preview"></div>
           <div>
             <span class="authors"></span>.
@@ -39,30 +16,19 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
             <span class="description"></span>
           </div>
           <div class="icons"></div>
-        </li>""", 'html.parser')
+        </li>""")
 
     soup.li.attrs['id'] = entry.key
 
     preview_holder = soup.find('div', class_='paper-preview')
-    preview_img_path = '/pubs/thumbs/{0}.svg'.format(entry.key)
-    preview_img = misc.get_asset('.' + preview_img_path)
-    if preview_img.exists():
-        preview_tag = soup.new_tag('img', alt='', src=preview_img_path)
-        preview_tag.attrs['width'] = '5'
-        preview_tag.attrs['height'] = '7.071'
-    else:
-        preview_tag = soup.new_tag('div', attrs={"class": "text"})
-        if entry.type == 'Unpublished':
-            preview_tag.string = 'DRAFT'
-        else:
-            preview_tag.string = 'NO\u00A0IMG'
+    preview_tag = get_preview_tag(entry, soup)
     preview_holder.append(preview_tag)
 
     # Title
     title_tag: bs4.Tag = soup.find('a', class_='article-title')
     title_tag.string = entry['title'].unescape()
-    if misc.get_asset(f'pubs/{entry.key}.html').exists():
-        title_tag.attrs['href'] = f'./pubs/{entry.key}.html'
+    if util.get_asset(f'/pubs/{entry.key}.html').exists():
+        title_tag.attrs['href'] = f'/pubs/{entry.key}.html'
 
     # Authors
     authors_span: bs4.Tag = soup.find('span', class_='authors')
@@ -79,26 +45,16 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
             external_url = entry['url'].unescape()
         else:
             external_url = 'https://doi.org/' + entry['doi'].unescape()
-        icons_tag.append(render_icon(
-            external_url,
-            'external',
-            'External location',
-            'Go to paper\'s external location',
-        ))
+        icons_tag.append(icon.render('external', 'publication', href=external_url, title='External location',
+                                     label='Go to paper\'s external location'))
     if 'eprint' in entry.values:
-        icons_tag.append(render_icon(
-            'https://arxiv.org/abs/' + entry['eprint'].unescape(),
-            'arxiv',
-            'arXiv',
-            'Go to paper\'s arXiv page'
-        ))
+        link = 'https://arxiv.org/abs/' + entry['eprint'].unescape()
+        icons_tag.append(
+            icon.render('arxiv', 'publication', href=link, title='arXiv', label='Go to paper\'s arXiv page'))
     if 'github_url' in entry.values:
-        icons_tag.append(render_icon(
-            entry['github_url'].unescape(),
-            'github',
-            'Code',
-            'Go to paper\'s GitHub page'
-        ))
+        link = entry['github_url'].unescape()
+        icons_tag.append(
+            icon.render('github', 'publication', href=link, title='Code', label='Go to paper\'s GitHub page'))
 
     # Description
     description_span: bs4.Tag = soup.find('span', class_='description')
@@ -129,13 +85,28 @@ def render_bibentry(entry: BibtexEntry) -> BeautifulSoup:
     return soup
 
 
-def render() -> BeautifulSoup:
-    body = BeautifulSoup("""<div id="bibliography"></div>""", 'html.parser')
-    entries = sorted(publications, key=lambda x: x.date)
-    paper_entries, thesis_entries = misc.partition(lambda x: x.type == 'Thesis', entries)
+def get_preview_tag(entry: BibtexEntry, soup: bs4.BeautifulSoup) -> bs4.Tag:
+    preview_img_path = '/pubs/thumbs/{0}.svg'.format(entry.key)
+    preview_img = util.get_asset(preview_img_path)
+    if preview_img.exists():
+        preview_tag = soup.new_tag('img', alt='', src=preview_img_path)
+        preview_tag.attrs['width'] = '5'
+        preview_tag.attrs['height'] = '7.071'
+    else:
+        preview_tag = soup.new_tag('div', attrs={"class": "text"})
+        if entry.type == 'Unpublished':
+            preview_tag.string = 'DRAFT'
+        else:
+            preview_tag.string = 'NO\u00A0IMG'
+    return preview_tag
 
-    publication_list = BeautifulSoup("""<h2 class="title">Bibliography</h2><ul id="publication-list"></ul>""",
-                                     'html.parser')
+
+def render():
+    body = util.make_soup("""<div id="bibliography"></div>""")
+    entries = sorted(publications, key=lambda x: x.date)
+    paper_entries, thesis_entries = util.partition(lambda x: x.type == 'Thesis', entries)
+
+    publication_list = util.make_soup("""<h2 class="title">Bibliography</h2><ul id="publication-list"></ul>""")
     current_year = -1
     current_item = None
     for entry in paper_entries:
@@ -152,7 +123,7 @@ def render() -> BeautifulSoup:
     publication_list.ul.insert(0, current_item)
     body.append(publication_list)
 
-    thesis_list = BeautifulSoup("""<ul id="publication-list"><h3 class="title">Thesis</h3></ul>""", 'html.parser')
+    thesis_list = util.make_soup("""<ul id="publication-list"><h3 class="title">Thesis</h3></ul>""")
     for entry in thesis_entries:
         thesis_list.ul.append(render_bibentry(entry))
     body.append(thesis_list)

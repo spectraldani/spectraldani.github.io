@@ -1,5 +1,6 @@
 import collections
 import re
+import subprocess
 from itertools import filterfalse, tee
 from pathlib import Path
 
@@ -57,3 +58,11 @@ def http_get(url, *args, **kwargs):
         data = requests.get(url, *args, **kwargs).text
         cache_file.write_text(data, encoding='utf-8')
         return data
+
+
+def parse_markdown(md: str) -> BeautifulSoup:
+    process = subprocess.run(['pandoc', '-f', 'markdown', '-t', 'html'], capture_output=True, input=md, text=True)
+    if process.returncode == 0:
+        return make_soup(process.stdout)
+    else:
+        raise Exception(f'pandoc failed: {process.stdout}\n{process.stderr}')

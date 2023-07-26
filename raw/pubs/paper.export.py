@@ -12,7 +12,7 @@ def render():
     return {
         f'{pub.key}.html': render_entry(pub)
         for pub in publications
-        if pub.type == 'InProceedings' and pub.key.startswith('Souza')
+        if pub.type in ['InProceedings', 'Unpublished'] and pub.key.startswith('Souza')
     }
 
 
@@ -47,6 +47,13 @@ def render_entry(entry: BibtexEntry):
         for name, link in entry.extra_urls.items():
             links.append(f"<a href='{link}'>{icon.render('external', 'publication')} {name}</a>")
 
+    extra_content_path = util.get_asset(f'/pubs/{entry.key}.md')
+    extra_content = (
+        util.parse_markdown(extra_content_path.read_text(encoding='utf-8'))
+        if extra_content_path.is_file() else
+        ''
+    )
+
     return util.format_html_str(
         template_html,
         util.FormatValues(
@@ -55,5 +62,7 @@ def render_entry(entry: BibtexEntry):
             authors=authors,
             thumbnail_tag=str(preview_holder),
             links=' '.join(links),
+            extra_content=extra_content,
+            extra_lang='en-US'
         )
     )

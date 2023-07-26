@@ -6,6 +6,7 @@ from typing import List, Dict, Tuple, Optional
 
 entry_re = re.compile(r'^\s*@(\w+)\{(.+),')
 value_re = re.compile(r'^\s*(\w+)\s*=\s*(.+),')
+and_re = re.compile(r'\band\b')
 
 
 @dataclass
@@ -49,13 +50,13 @@ class BibtexEntry:
     def authors(self) -> List[Tuple[str, str]]:
         """"Returns the 'author' entry properly parsed as (last name, rest)"""
         assert 'author' in self.values
-        return [parse_author_name(x.strip()) for x in self['author'].unescape().split('and')]
+        return [parse_author_name(x.strip()) for x in and_re.split(self['author'].unescape())]
 
     @property
     def supervisor(self) -> List[Tuple[str, str]]:
         """"Returns the 'supervisor' entry properly parsed as (last name, rest)"""
         assert 'supervisor' in self.values
-        return [parse_author_name(x.strip()) for x in self['supervisor'].unescape().split('and')]
+        return [parse_author_name(x.strip()) for x in and_re.split(self['supervisor'].unescape())]
 
     @property
     def date(self) -> datetime.date:

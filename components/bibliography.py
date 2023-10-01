@@ -104,16 +104,17 @@ def get_preview_tag(entry: BibtexEntry, soup: bs4.BeautifulSoup) -> bs4.Tag:
 
 
 def render():
-    body = util.make_soup("""<div id="bibliography"></div>""")
+    body = util.make_soup("""<div id="bibliography"><h2 class="title">Bibliography</h2></div>""")
     entries = sorted(publications, key=lambda x: x.date)
     entries, draft_entries = util.partition(lambda x: x.type == 'Unpublished', entries)
     paper_entries, thesis_entries = util.partition(lambda x: x.type == 'Thesis', entries)
 
-
-    draft_list = util.make_soup("""<h2 class="title">Bibliography</h2><ul id="publication-list"><h3 class="title">Drafts</h3></ul>""")
-    for entry in draft_entries:
-        draft_list.ul.append(render_bibentry(entry))
-    body.append(draft_list)
+    draft_entries = list(draft_entries)
+    if len(draft_entries) > 0:
+        draft_list = util.make_soup("""<ul id="publication-list"><h3 class="title">Drafts</h3></ul>""")
+        for entry in draft_entries:
+            draft_list.ul.append(render_bibentry(entry))
+        body.append(draft_list)
 
     publication_list = util.make_soup("""<ul id="publication-list"></ul>""")
     current_year = -1

@@ -12,7 +12,8 @@ def render():
     return {
         f'{pub.key}.html': render_entry(pub)
         for pub in publications
-        if pub.type in ['InProceedings', 'Unpublished'] and pub.key.startswith('Souza')
+        if pub.type in ['InProceedings', 'Unpublished'] and
+        (pub.key.startswith('Souza') or util.get_asset(f'/pubs/{pub.key}.md').exists())
     }
 
 

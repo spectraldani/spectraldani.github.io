@@ -46,7 +46,11 @@ def render_entry(entry: BibtexEntry):
 
     if entry.extra_urls is not None:
         for name, link in entry.extra_urls.items():
-            links.append(f"<a href='{link}'>{icon.render('external', 'publication')} {name}</a>")
+            if name == 'OpenReview':
+                icon_type = 'openreview'
+            else:
+                icon_type = 'external'
+            links.append(f"<a href='{link}'>{icon.render(icon_type, 'publication')} {name}</a>")
 
     extra_content_path = util.get_asset(f'/pubs/{entry.key}.md')
     extra_content = (

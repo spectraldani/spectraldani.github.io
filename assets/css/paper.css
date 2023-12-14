@@ -28,7 +28,7 @@ main {
 
 .title-holder {
     text-align: center;
-    flex: 1 0 0;
+    flex: 1 0 50%;
 }
 
 a {
@@ -40,7 +40,37 @@ a > svg {
     margin-right: 0.3em;
 }
 
-div#box-header span.links {
+span.links {
     display: flex;
     justify-content: space-evenly;
+}
+
+figure > img {
+    width: 100%;
+}
+
+figcaption, caption {
+    text-align: center;
+    font-size: 0.8em;
+    caption-side: bottom;
+}
+
+figure.numbered figcaption::before {
+    font-weight: 700;
+    content: 'Figure ' counter(captions) ': ';
+}
+
+figure.numbered {
+    counter-increment: captions;
+}
+
+table {
+    width: 100%;
+}
+
+table th, table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
 }

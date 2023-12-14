@@ -16,7 +16,21 @@
 <link href="/icon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/assets/css/index.css" rel="stylesheet" type="text/css"/>
 <link href="/assets/css/paper.css" rel="stylesheet" type="text/css"/>
-<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" rel="stylesheet"/>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                packages: {'[+]': ['mathtools']},
+
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -64,12 +78,4 @@
 </div>
 </main>
 </body>
-<script crossorigin="anonymous" integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
-
-<script>
-    for (const e of document.getElementsByTagName('main')[0].getElementsByClassName('math')) {
-        const is_display = (e.classList[1] === 'display');
-        katex.render(e.innerText, e, {displayMode: is_display})
-    }
-</script>
 </html>

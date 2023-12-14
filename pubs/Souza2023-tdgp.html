@@ -16,7 +16,21 @@
 <link href="/icon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/assets/css/index.css" rel="stylesheet" type="text/css"/>
 <link href="/assets/css/paper.css" rel="stylesheet" type="text/css"/>
-<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" rel="stylesheet"/>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                packages: {'[+]': ['mathtools']},
+
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -62,13 +76,13 @@ Arxiv</a> <a href="https://github.com/spectraldani/thindeepgps">
 <use width="100" xlink:href="/assets/icons/publication.svg#github"></use>
 </svg>
 </span>
- Github</a> <a href="/assets/pubs/Souza2023-tdgp.poster.pdf">
+ Github</a> <a href="/assets/pubs/Souza2023-tdgp/poster.pdf">
 <span class="icon">
 <svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
 <use width="100" xlink:href="/assets/icons/publication.svg#external"></use>
 </svg>
 </span>
- Poster</a> <a href="/assets/pubs/Souza2023-tdgp-neurips.slides.pdf">
+ Poster</a> <a href="/assets/pubs/Souza2023-tdgp/neurips-slides.pdf">
 <span class="icon">
 <svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
 <use width="100" xlink:href="/assets/icons/publication.svg#external"></use>
@@ -84,16 +98,555 @@ Arxiv</a> <a href="https://github.com/spectraldani/thindeepgps">
 </div>
 </div>
 <div lang="en-US">
+<div style="display: none">
+<span class="math display">$$
+\require{mathtools}
+\DeclareMathOperator{\Tr}{Tr}
+\let\det\undefined
+\newcommand{\T}{\intercal}
+\DeclarePairedDelimiter{\det}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\parens}{\lparen}{\rparen}
+\DeclarePairedDelimiterX{\parensgiven}[2]{\lparen}{\rparen}{#1\;\delimsize|\;#2}
+\DeclarePairedDelimiterX{\parenskl}[2]{\lparen}{\rparen}{#1\;\delimsize\|\;#2}
+\DeclarePairedDelimiter{\bracks}{[}{]}
+\newcommand{\kld}{\operatorname{KL}\infdivx}
+\newcommand{\GPdist}[1]{\operatorname{GP}\parens*{#1}}
+\newcommand{\Normaldist}[1]{\mathcal{N}\parens*{#1}}
+\newcommand{\E}[2][]{\operatorname{\mathbb{E}}_{#1}\left[#2\right]}
+\newcommand{\cov}[2][]{\operatorname{cov}_{#1}\left[#2\right]}
+\newcommand{\inprod}[2][]{\left\langle#2\right\rangle_{#1}}
+\let\vec\undefined
+\newcommand{\blank}{\cdot}
+\newcommand{\set}[1]{\mathcal{{#1}}}
+\newcommand{\vec}[1]{\mathbfit{{#1}}}
+\newcommand{\mat}[1]{\mathbfit{{#1}}}
+\newcommand{\fun}[1]{\mathrm{#1}}
+\newcommand{\vecfun}[1]{\mathbf{#1}}
+\newcommand{\matfun}[1]{\mathbf{{#1}}}
+\newcommand{\op}[1]{{{#1}}}
+\newcommand{\call}[1]{\parens*{#1}}
+\newcommand{\callgiven}[2]{\parensgiven*{#1}{#2}}
+\newcommand{\bcall}[1]{\bracks*{#1}}
+\newcommand{\pre}[1]{#1^\circ}
+\newcommand{\T}{\intercal}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Ltwo}[1]{L^2\parens*{#1}}
+\renewcommand{\d}{\mathrm{d}}
+$$</span>
+</div>
+<h1 id="intro-to-gaussian-processes">Intro to Gaussian processes</h1>
+<p>From their origins in geospatial modelling as Kriging to wider use in
+machine learning, Gaussian processes are widely used due to their simple
+uncertainty quantification guarantees and connection to Bayesian neural
+networks.</p>
+<p>Fundamentally, a Gaussian process <span class="math inline">$\fun{f}\call\blank\sim\GPdist{\fun{0},\fun{k}}$</span>
+is a distribution over functions such that <span class="math inline">$\cov{\fun{f}\call{\vec{a}},\fun{f}\call{\vec{b}}} =
+\fun{k}\call{\vec{a},\vec{b}}$</span>. This <span class="math inline">$\fun{k}\call\blank$</span> function is called the
+kernel function due to its association with kernel machines.</p>
+<p>
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/plot2.1.png"/>
+<figcaption>Samples from a Gaussian process, the opacity shows their probability.</figcaption>
+</figure>
+</p>
+<p>But, given some training data <span class="math inline">$\mathcal{D}=\parens*{\mat{X},\vec{y}}$</span>, this
+initial prior distribution can be updated into a posterior distribution
+that is also Gaussian process:
+
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/plot_post.png"/>
+<figcaption>Samples from a Gaussian process posterior.</figcaption>
+</figure>
+</p>
+<p>Note that the posterior mean is a sum of evaluations of the kernel
+scaled by <span class="math inline">$\fun{k}\call{\set{X}}^{-1}
+\vec{y}$</span>. This shows that not only is the kernel important in the
+uncertainty estimation but that the interpolation and extrapolations
+capabilities of this posterior distribution is also dependent on the
+choice of kernel.</p>
+<p>The most commonly used kernels, such as the squared exponential
+kernel or the Matérn family of kernels, belong to the class of
+stationary kernels. The defining property of stationary kernels is that
+all slices <span class="math inline">$\fun{k}(a,\blank)$</span> are the
+same:
+
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/plot3.png"/>
+<figcaption>Slices of the squared exponential kernel.</figcaption>
+</figure>
+
+In particular, these popular kernels are also part of the class of
+isotropic stationary kernels, which leads to easily interpretable
+hyperparameters such as the lengthscales and signal variance.</p>
+<p>Nevertheless, it is known that this simple class of kernels is not
+enough to model and extrapolate interesting datasets. For example, many
+geospatial processes such as sea surface height, bathymetry and surface
+temperature are known to be non-stationary processes. Given the appeal
+of the simplicity of the stationary kernels, a productive research
+direction is to produce non-stationary kernels using these simple
+kernels as a base.</p>
+<h1 id="non-stationary-kernels-from-stationary">Non-stationary kernels
+from stationary</h1>
+<p>Let’s shortly review the terms surrounding stationary kernels. A
+kernel is stationary if: <span class="math display">$$
+\fun{k}\call{\vec{a}, \vec{b}} = \fun{k}\call{\vec{a}-\vec{b}, \vec{0}}.
+$$</span> This simplification means that stationary kernels don’t have
+an <em>a priori</em> preference for a specific position in space since
+they only depend on the relative distances between points.</p>
+<p>A further constrained class of kernels is the isotropic kernels:
+<span class="math display">$$
+\fun{k}\call{\vec{a}, \vec{b}} =
+\fun{\pi}_{\fun{k}}\call{\parens*{\vec{a}-\vec{b}}^{\T}\mat{\Delta}^{-1}\parens
+*{\vec{a}-\vec{b}}}.
+$$</span> These kernels depend only on the distance between two points,
+a further restriction from plain stationarity. These kernels are
+described by a scalar function <span class="math inline">$\fun{\pi}_{\fun{k}}$</span> and the positive
+semi-definite lengthscale matrix hyperparameter <span class="math inline">$\mat{\Delta}$</span>. Usually this matrix is taken
+to be constant diagonal matrices <span class="math inline">$\mat{\Delta}
+= \ell^2\mat{I}$</span> or have each component of the diagonal be
+different. Nevertheless, it can be appropriate to learn the full
+matrix.</p>
+<p>The very famous squared exponential kernel is an example of a
+stationary isotropic kernel, we simply take: <span class="math display">$$
+\fun{\pi}_{\text{SE}}\call{d^2} = \exp\bcall{-\frac{1}{2}d^2}.
+$$</span>
+
+<figure class="numbered" id="figure-ls-plot">
+<img src="/assets/pubs/Souza2023-tdgp/plots/ls.png"/>
+<figcaption>Samples of a GP with a squared exponential kernel, for varying values of the lengthscale $\ell$.</figcaption>
+</figure>
+</p>
+<h2 id="composition-kernels">Composition kernels</h2>
+<p>A very popular approach is to use a function to warp the inputs of
+the kernel, thus, even if the original kernel is stationary in the
+warped space, if we consider it as a function of the original space, the
+function can be non-stationary.
+
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/warped.png"/>
+<figcaption>Example of a squared exponential kernel being warped into a bimodal kernel.</figcaption>
+</figure>
+</p>
+<p>Given a warping function <span class="math inline">$\vecfun{\tau}\call\blank$</span>, we express this
+class of kernels as: <span class="math display">$$
+\fun{k}_{\vecfun{\tau}}\call{\vec{a},\vec{b}} =
+\fun{k}\call{\vecfun{\tau}\call{\vec{a}}, \vecfun{\tau}\call{\vec{b}}}
+$$</span> The expressiveness of this composite kernel is strongly
+dependent on the type of warping function. For example, deforming an
+isotropic kernel linearly <span class="math inline">$\fun{\tau}\call{x}
+= \ell^{-1}\cdot x$</span> only changes the lengthscale of the
+kernel.</p>
+<p>If we use a neural network as our warping function, this is the
+method described by deep kernel learning (DKL) <a class="footnote-ref" href="#fn1" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>However, if we instead use a Gaussian process prior on <span class="math inline">$\vecfun{\tau}\call\blank$</span>, we can build a
+hierarchical GP model where each layer is the warping function of the
+next’s layer. This is the proposal in deep GPs <a class="footnote-ref" href="#fn2" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+which we will refer as compositional deep GP (CDGP), in order to
+distinguish it from other hierarchical GP models.</p>
+<h3 id="limitations">Limitations</h3>
+<p>The main limitation of this approach is that isotropic kernels have
+very interpretable hyperparameters, however, for compositional kernels,
+the interpretability bottleneck is placed on the warping function
+instead. So, very expressive warping functions like neural networks
+eliminate the attractiveness of kernel methods.</p>
+<p>More specifically, for this DKL case, since the warping function is
+not Bayesian, the large number of parameters negate most benefits of the
+GP Bayesian inference, including protection from overfitting.</p>
+<p>Meanwhile, for CDGPs, since the incentive with compositional kernels
+is to potentially compress high dimensional data, it would be
+interesting to place a zero mean prior on the transformation <span class="math inline">$\vecfun{\tau}\call\blank$</span> to incentivise the
+latent space to more sparse. However, with the increase of depth, these
+models quickly collapse and can’t be used for learning <a class="footnote-ref" href="#fn3" id="fnref3" role="doc-noteref"><sup>3</sup></a>.
+Therefore, in practice, most models use other mean functions <a class="footnote-ref" href="#fn4" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/pathology.png"/>
+<figcaption>Prior samples of a CDGP with zero mean and our proposed model, with increasing depth.</figcaption>
+</figure>
+</p>
+<h2 id="lengthscale-mixture-kernels">Lengthscale mixture kernels</h2>
+<p>Alternatively, instead of warping the input space, some authors
+explored ways to make the lengthscale hyperparameter <span class="math inline">$\mat{\Delta}$</span> vary along the input space.
+The most popular approach is defined as follows:<a class="footnote-ref" href="#fn5" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+
+where the upper term is called the “pre-factor”.</p>
+<p>In the case where the base kernel is the square exponential, this
+kernel is known as Gibbs’ kernel, as Mark Gibbs first derived this
+kernel <a class="footnote-ref" href="#fn6" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+<p>
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/mixture.png"/>
+<figcaption>A 1D example of Gibbs' kernel, showing the lengthscale field, pre-factor and kernel parts.</figcaption>
+</figure>
+</p>
+<p>To build hierarchical models using this kernel, it is enough to
+specify a function of positive semi-definite matrices <span class="math inline">$\matfun{\Delta}\call\blank$</span>. In the context
+of GPs, this can be achieved by using a function <span class="math inline">$\fun{\sigma}\call\blank$</span> which warps the GP
+output from a Gaussian distribution to a distribution with positive
+semi-definite matrices as support. Thus, a hierarchical model like
+deeply non-stationary Gaussian process <a class="footnote-ref" href="#fn7" id="fnref7" role="doc-noteref"><sup>7</sup></a> is
+defined.</p>
+<p>The main benefit in interpretability of methods like this compared to
+traditional compositional models like DKl and CDGP is that each
+lengthscale function is always a function of the input space and not of
+a previously deformed space. Therefore, all elements in the hierarchy
+can be inspected in terms of the original space and each of them control
+the interpretable lengthscales of the next layer.</p>
+<p>
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/mixture2.png"/>
+<figcaption>Different lengthscale functions and their effects on the GP prior with Gibbs' kernel. Compare with [Fig. 4](#figure-ls-plot) for the stationary case.</figcaption>
+</figure>
+</p>
+<h3 id="limitations-1">Limitations</h3>
+<p>As observed by Paciorek <a class="footnote-ref" href="#fn8" id="fnref8" role="doc-noteref"><sup>8</sup></a> and Gibbs <a class="footnote-ref" href="#fn9" id="fnref9" role="doc-noteref"><sup>9</sup></a>,
+the pre-factor term can be hard to interpret and lead to intuitive
+correlations, specially when there are sharp differences between the
+lengthscales being compared.</p>
+<p>Additionally, as the quadratic term that gets sent to <span class="math inline">$\fun{\pi}_{\fun{k}}$</span> doesn’t define a proper
+metric space, it is unknown if these kernels can be expressed in terms
+of latent spaces, thus, losing the benefits of learning
+lower-dimensional embeddings of data.</p>
+<h1 id="our-hybrid-proposal">Our hybrid proposal</h1>
+<p>Returning to the compositional kernels, we observed that given a
+stationary kernel, linear deformations only correspond to changes in
+lengthscale. More explicitly, consider a linear deformation of a square
+exponential kernel: therefore, in this case, the lengthscales of the
+deformed kernel are <span class="math inline">$\bracks*{\mat{W}^\T\mat{W}}^{-1}$</span>.</p>
+<p>Our proposal is to expand to take this deformation and turn it into a
+locally linear deformation <span class="math inline">$\vecfun{\tau}\call{\vec{x}} =
+\matfun{W}\call{\vec{x}}\,\vec{x}$</span>. Using this deformation, we
+can use it to define a lengthscale field <span class="math inline">$\matfun{\Delta}\call{\vec{x}} =
+\bracks*{\matfun{W}^\T\call{\vec{x}}\matfun{W}\call{\vec{x}}}^{-1}$</span>
+while reaping the benefits of learning latent spaces. This <span class="math inline">$\matfun{W}\call\blank$</span> can be directly
+parametrized with a Gaussian process since there is no restrictions on
+its entries, unlike for the lengthscale function <span class="math inline">$\matfun{\Delta}\call\blank$</span>.</p>
+<p>To propose a hierarchical GP using this type of kernel
+transformation, we propose keeping the deformation rooted in the
+original input space but composing the weight matrix normally. In other
+words, a two layer deep deformation has form: with the prior
+distributions: Therefore, each node in the hierarchical model is still
+connected to the input layers, just like in DNSGP but not in the
+traditional CDGP. <a href="#figure-graph">Fig. 9</a> shows a graphical
+representation. For this reason, we name our proposal thin and deep
+Gaussian processes, as the size of the smallest loop (i.e. its <a href="https://en.wikipedia.org/wiki/Girth_(graph_theory)">girth</a>) is
+always 3, instead of the unbounded girth of the traditional CDGP
+model.</p>
+<p>
+<figure class="numbered" id="figure-graph">
+<img src="/assets/pubs/Souza2023-tdgp/plots/graphicalmodel.png"/>
+<figcaption>A comparison of the graphical model of CDGP and our proposal. The dashed nodes represent where nodes in the hierarchy are attached.</figcaption>
+</figure>
+</p>
+<h2 id="variational-inference">Variational inference</h2>
+<p>As with any deep GP model, the posterior distribution is not a
+Gaussian process and approximate inference has to be used. For this
+work, we choose to apply the variational inference with inducing points
+framework that’s common used for deep GPs <a class="footnote-ref" href="#fn10" id="fnref10" role="doc-noteref"><sup>10</sup></a><a class="footnote-ref" href="#fn11" id="fnref11" role="doc-noteref"><sup>11</sup></a>. We introduce <span class="math inline"><em>m</em><sub>ℓ</sub></span> inducing points for
+each layer <span class="math inline">ℓ</span>, such that our variational
+posterior distribution is: where the <span class="math inline"><em>q</em></span> distributions are parametrized by
+a mean and covariance vectors of dimension <span class="math inline"><em>m</em><sub>ℓ</sub></span>. By exploiting earlier
+results from VI on square exponential hyperparameters <a class="footnote-ref" href="#fn12" id="fnref12" role="doc-noteref"><sup>12</sup></a>,
+we propose a deterministic closed-form VI scheme restricted when the
+base kernel <span class="math inline">$\fun{\pi}_{\fun{k}}$</span> is
+restricted to squared exponential. Nevertheless, we can use doubly
+stochastic inference <a class="footnote-ref" href="#fn13" id="fnref13" role="doc-noteref"><sup>13</sup></a> to remove this restriction at the
+cost of having to estimate the ELBO.</p>
+<h2 id="limitations-2">Limitations</h2>
+<p>The biggest drawback of the kernel that we propose is that by
+deforming the space with locally linear transformations is that the
+neighbourhood around <span class="math inline">0</span> is not affected
+by linear transformations, unlike CDGP or DNSGP. A possible solution is
+to add a bias term to the input data and effectively turning local
+linear transforms into affine transforms that do not preserve the
+neighbourhood around <span class="math inline">0</span>.</p>
+<p>A limitation that comes with the hierarchical GP approach is the
+increased number of output channels in each GP layer of the TDGP
+architecture. More specifically, for the compositional DGP, to learn a
+latent space with dimension <span class="math inline"><em>Q</em></span>,
+it requires a GP layer with output dimension <span class="math inline"><em>Q</em></span>, however, for TDGP, we require
+output dimension <span class="math inline"><em>Q</em> × <em>D</em></span>, as we learn the
+transformation matrix.</p>
+<h1 id="results-in-geospatial-datasets">Results in geospatial
+datasets</h1>
+<p>As a case-study, we also apply TDGP to the GEBCO gridded bathymetry
+dataset. It contains a global terrain model (elevation data) for ocean
+and land. We selected an especially challenging subset of the data
+covering the Andes mountain range, ocean, and land.</p>
+<p>
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/screen.png"/>
+<figcaption>Satellite imagery of the selected area, shown in yellow.</figcaption>
+</figure>
+</p>
+<p>This region was subsampled to 1,000 points from this region and
+compared with the methods via five-fold cross validation. The baselines
+chosen are: single layer sparse GP <a class="footnote-ref" href="#fn14" id="fnref14" role="doc-noteref"><sup>14</sup></a>, stochastic
+variational DKL <a class="footnote-ref" href="#fn15" id="fnref15" role="doc-noteref"><sup>15</sup></a>, doubly stochastic deep GP <a class="footnote-ref" href="#fn16" id="fnref16" role="doc-noteref"><sup>16</sup></a>, and deeply stationary GP <a class="footnote-ref" href="#fn17" id="fnref17" role="doc-noteref"><sup>17</sup></a>.</p>
+<p>
+<figure class="numbered">
+<img src="/assets/pubs/Souza2023-tdgp/plots/plots.jpg"/>
+<figcaption>Satellite imagery of the selected area, shown in yellow.</figcaption>
+</figure>
+</p>
+<p>As seen in the results plot, TDGP is the only method that learns both
+a lengthscale field, represented as the trace of the lengthscale matrix,
+and a latent space, represented with a <a href="https://en.wikipedia.org/wiki/Domain_coloring">domain colored
+plot</a>. Not only that, but we can see that the regions of lower
+lengthscale are well correlated with higher spatial variance.</p>
+<table class="metrics">
+<tbody>
+<tr>
+<th>
+</th>
+<th>
+NLPD
+</th>
+<th>
+MRAE
+</th>
+</tr>
+<tr>
+<td>
+Sparse GP
+</td>
+<td>
+-0.13 ± 0.09
+</td>
+<td>
+1.19 ± 0.63
+</td>
+</tr>
+<tr>
+<td>
+Deep Kernel Learning
+</td>
+<td>
+3.85 ± 0.92
+</td>
+<td>
+<b>0.59 ± 0.31</b>
+</td>
+</tr>
+<tr>
+<td>
+Compositional DGP
+</td>
+<td>
+-0.44 ± 0.12
+</td>
+<td>
+0.83 ± 0.56
+</td>
+</tr>
+<tr>
+<td>
+TDGP (Ours)
+</td>
+<td>
+<b>-0.53 ± 0.10</b>
+</td>
+<td>
+0.66 ± 0.43
+</td>
+</tr>
+</tbody>
+<caption>
+<span style="font-weight: 700;">Table 1:</span> Metrics on test data
+</caption>
+</table>
+<p>In terms of metrics, our proposal has the best negative log
+predictive density, showing that our predictions are well calibrated,
+and only losing to DKL in terms of mean error. However, our method has
+the best balance between the accuracy of the mean and uncertainty
+calibration.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>We’ve introduced Thin and Deep Gaussian Processes (TDGP), a new
+hierarchical architecture for DGPs. TDGP’s strength lies in its ability
+to recover non-stationary functions through locally linear deformations
+of stationary kernels, while also learning lengthscale fields. Unlike
+regular compositional DGPs, TDGP sidesteps the concentration of prior
+samples that happens with increasing layers. Our experiments confirm
+TDGP’s strengths in tasks with latent dimensions and geospatial
+data.</p>
+<p>We hope to investigate further how the more interpretable hidden
+layers can be used with addition of expert knowledge, either in the
+prior or in the variational posterior, and apply this method in areas
+where models like DNSGP couldn’t be applied, due to the lack of latent
+space embeddings.</p>
+<h3 id="references">References</h3>
+
+<style>
+.page-body { text-align: justify }
+.footnotes[role="doc-endnotes"] > hr { display: none; }
+.footnotes[role="doc-endnotes"] { text-align: left; }
+sup { top: 0; position: static; font-size: 1rem;}
+.footnote-ref:before { content: " ["; }
+.footnote-ref:after { content: "]"; }
+table.metrics td:nth-child(1) {
+    font-weight: bold;
+    text-align: end;
+}
+</style>
+<section class="footnotes footnotes-end-of-document" id="footnotes" role="doc-endnotes">
+<hr/>
+<ol>
+<li id="fn1"><p><a href="https://proceedings.neurips.cc/paper_files/paper/2016/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Andrew Gordon Wilson, Zhiting Hu, Ruslan Salakhutdinov, Eric P. Xing.
+“Stochastic Variational Deep Kernel Learning” (2016)<a class="footnote-back" href="#fnref1" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://proceedings.mlr.press/v31/damianou13a.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Andreas C. Damianou, Neil D. Lawrence “Deep Gaussian Processes” (2013)<a class="footnote-back" href="#fnref2" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://proceedings.mlr.press/v33/duvenaud14.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+David Duvenaud, Oren Rippel, Ryan Adams, and Zoubin Ghahramani “Avoiding
+pathologies in very deep networks” (2014)<a class="footnote-back" href="#fnref3" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://proceedings.neurips.cc/paper_files/paper/2017/hash/8208974663db80265e9bfe7b222dcb18-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Hugh Salimbeni, Marc Peter Deisenroth. “Doubly Stochastic Variational
+Inference for Deep Gaussian Processes” (2017)<a class="footnote-back" href="#fnref4" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://proceedings.neurips.cc/paper/2003/hash/326a8c055c0d04f5b06544665d8bb3ea-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Christopher J. Paciorek, Mark J. Schervish “Nonstationary Covariance
+Functions for Gaussian Process Regression” (2003)<a class="footnote-back" href="#fnref5" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="http://www.inference.phy.cam.ac.uk/mng10/GP/thesis.ps.gz">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Mark N. Gibbs “Bayesian Gaussian Processes for Regression and
+Classification” (1997)<a class="footnote-back" href="#fnref6" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="http://bayesiandeeplearning.org/2017/papers/49.pdf">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Hugh Salimbeni, Marc Peter Deisenroth. “Deeply Non-Stationary Gaussian
+Processes” (2017)<a class="footnote-back" href="#fnref7" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="https://proceedings.neurips.cc/paper/2003/hash/326a8c055c0d04f5b06544665d8bb3ea-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Christopher J. Paciorek, Mark J. Schervish “Nonstationary Covariance
+Functions for Gaussian Process Regression” (2003)<a class="footnote-back" href="#fnref8" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="http://www.inference.phy.cam.ac.uk/mng10/GP/thesis.ps.gz">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Mark N. Gibbs “Bayesian Gaussian Processes for Regression and
+Classification” (1997)<a class="footnote-back" href="#fnref9" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><a href="https://proceedings.mlr.press/v31/damianou13a.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Andreas C. Damianou, Neil D. Lawrence “Deep Gaussian Processes” (2013)<a class="footnote-back" href="#fnref10" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="https://proceedings.neurips.cc/paper_files/paper/2017/hash/8208974663db80265e9bfe7b222dcb18-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Hugh Salimbeni, Marc Peter Deisenroth. “Doubly Stochastic Variational
+Inference for Deep Gaussian Processes” (2017)<a class="footnote-back" href="#fnref11" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><a href="https://proceedings.neurips.cc/paper/2013/hash/115f89503138416a242f40fb7d7f338e-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Michalis K. Titsias, Miguel Lázaro-Gredilla. “Variational Inference for
+Mahalanobis Distance Metrics in Gaussian Process Regression” (2013)<a class="footnote-back" href="#fnref12" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><a href="https://proceedings.neurips.cc/paper_files/paper/2017/hash/8208974663db80265e9bfe7b222dcb18-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Hugh Salimbeni, Marc Peter Deisenroth. “Doubly Stochastic Variational
+Inference for Deep Gaussian Processes” (2017)<a class="footnote-back" href="#fnref13" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p><a href="http://proceedings.mlr.press/v5/titsias09a.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Michalis K. Titsias “Variational Learning of Inducing Variables in
+Sparse Gaussian Processes” (2009)<a class="footnote-back" href="#fnref14" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://proceedings.neurips.cc/paper_files/paper/2016/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Andrew Gordon Wilson, Zhiting Hu, Ruslan Salakhutdinov, Eric P. Xing.
+“Stochastic Variational Deep Kernel Learning” (2016)<a class="footnote-back" href="#fnref15" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><a href="https://proceedings.neurips.cc/paper_files/paper/2017/hash/8208974663db80265e9bfe7b222dcb18-Abstract.html">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Hugh Salimbeni, Marc Peter Deisenroth. “Doubly Stochastic Variational
+Inference for Deep Gaussian Processes” (2017)<a class="footnote-back" href="#fnref16" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p><a href="http://bayesiandeeplearning.org/2017/papers/49.pdf">
+<span class="icon">
+<svg aria-hidden="true" height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+<use width="100" xlink:href="/assets/icons/publication.svg#openreview"></use>
+</svg>
+</span>
+</a>
+Hugh Salimbeni, Marc Peter Deisenroth. “Deeply Non-Stationary Gaussian
+Processes” (2017)<a class="footnote-back" href="#fnref17" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </div>
 </div>
 </main>
 </body>
-<script crossorigin="anonymous" integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
-
-<script>
-    for (const e of document.getElementsByTagName('main')[0].getElementsByClassName('math')) {
-        const is_display = (e.classList[1] === 'display');
-        katex.render(e.innerText, e, {displayMode: is_display})
-    }
-</script>
 </html>

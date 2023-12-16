@@ -147,17 +147,23 @@ kernel function due to its association with kernel machines.</p>
 <p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/plot2.1.png"/>
-<figcaption>Samples from a Gaussian process, the opacity shows their probability.</figcaption>
-</figure>
+<figcaption>Samples from a Gaussian process, the opacity shows their
+probability.</figcaption></figure>
 </p>
 <p>But, given some training data <span class="math inline">$\mathcal{D}=\parens*{\mat{X},\vec{y}}$</span>, this
 initial prior distribution can be updated into a posterior distribution
-that is also Gaussian process:
-
+that is also Gaussian process: <span class="math display">$$\begin{align}
+\fun{f}\call\blank\mid\mathcal{D} \sim \GPdist{\begin{matrix*}[l]
+\fun{k}\call{\blank,\set{X}}\,\fun{k}\call{\set{X}}^{-1}\,\vec{y},\\
+\fun{k}\call{\blank_1, \blank_2} -
+\fun{k}\call{\blank_1,\set{X}}\,\fun{k}\call{\set{X}}^{-1}\,
+\fun{k}\call{\set{X},\blank_2}
+\end{matrix*}},
+\end{align}$$</span></p>
+<p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/plot_post.png"/>
-<figcaption>Samples from a Gaussian process posterior.</figcaption>
-</figure>
+<figcaption>Samples from a Gaussian process posterior.</figcaption></figure>
 </p>
 <p>Note that the posterior mean is a sum of evaluations of the kernel
 scaled by <span class="math inline">$\fun{k}\call{\set{X}}^{-1}
@@ -173,8 +179,7 @@ same:
 
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/plot3.png"/>
-<figcaption>Slices of the squared exponential kernel.</figcaption>
-</figure>
+<figcaption>Slices of the squared exponential kernel.</figcaption></figure>
 
 In particular, these popular kernels are also part of the class of
 isotropic stationary kernels, which leads to easily interpretable
@@ -214,8 +219,8 @@ $$</span>
 
 <figure class="numbered" id="figure-ls-plot">
 <img src="/assets/pubs/Souza2023-tdgp/plots/ls.png"/>
-<figcaption>Samples of a GP with a squared exponential kernel, for varying values of the lengthscale $\ell$.</figcaption>
-</figure>
+<figcaption>Samples of a GP with a squared exponential kernel, for varying values
+of the lengthscale <span class="math inline">ℓ</span>.</figcaption></figure>
 </p>
 <h2 id="composition-kernels">Composition kernels</h2>
 <p>A very popular approach is to use a function to warp the inputs of
@@ -225,8 +230,8 @@ function can be non-stationary.
 
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/warped.png"/>
-<figcaption>Example of a squared exponential kernel being warped into a bimodal kernel.</figcaption>
-</figure>
+<figcaption>Example of a squared exponential kernel being warped into a bimodal
+kernel.</figcaption></figure>
 </p>
 <p>Given a warping function <span class="math inline">$\vecfun{\tau}\call\blank$</span>, we express this
 class of kernels as: <span class="math display">$$
@@ -262,23 +267,34 @@ Therefore, in practice, most models use other mean functions <a class="footnote-
 <p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/pathology.png"/>
-<figcaption>Prior samples of a CDGP with zero mean and our proposed model, with increasing depth.</figcaption>
-</figure>
+<figcaption>Prior samples of a CDGP with zero mean and our proposed model, with
+increasing depth.</figcaption></figure>
 </p>
 <h2 id="lengthscale-mixture-kernels">Lengthscale mixture kernels</h2>
 <p>Alternatively, instead of warping the input space, some authors
 explored ways to make the lengthscale hyperparameter <span class="math inline">$\mat{\Delta}$</span> vary along the input space.
 The most popular approach is defined as follows:<a class="footnote-ref" href="#fn5" id="fnref5" role="doc-noteref"><sup>5</sup></a>
 
-where the upper term is called the “pre-factor”.</p>
+<span class="math display">$$\begin{align}
+\fun{k}_{\matfun{\Delta}}\call{\vec{a},\vec{b}} =&amp;
+\sqrt{\frac{
+\sqrt{\det{\matfun{\Delta}\call{\vec{a}}}}\sqrt{\det{\matfun{\Delta}\call{\vec{b}}}}
+}{
+\det{\frac{\matfun{\Delta}\call{\vec{a}}+\matfun{\Delta}\call{\vec{b}}}{2}}
+}}\;\times\\
+&amp;\fun{\pi}_{\fun{k}}\call{\parens*{\vec{a}-\vec{b}}^{\T}\bracks*{
+\frac{\matfun{\Delta}\call{\vec{a}}+\matfun{\Delta}\call{\vec{b}}}{2}
+}^{-1}\parens*{\vec{a}-\vec{b}}},
+\end{align}$$</span> where the upper term is called the
+“pre-factor”.</p>
 <p>In the case where the base kernel is the square exponential, this
 kernel is known as Gibbs’ kernel, as Mark Gibbs first derived this
 kernel <a class="footnote-ref" href="#fn6" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 <p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/mixture.png"/>
-<figcaption>A 1D example of Gibbs' kernel, showing the lengthscale field, pre-factor and kernel parts.</figcaption>
-</figure>
+<figcaption>A 1D example of Gibbs’ kernel, showing the lengthscale field,
+pre-factor and kernel parts.</figcaption></figure>
 </p>
 <p>To build hierarchical models using this kernel, it is enough to
 specify a function of positive semi-definite matrices <span class="math inline">$\matfun{\Delta}\call\blank$</span>. In the context
@@ -296,8 +312,9 @@ the interpretable lengthscales of the next layer.</p>
 <p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/mixture2.png"/>
-<figcaption>Different lengthscale functions and their effects on the GP prior with Gibbs' kernel. Compare with [Fig. 4](#figure-ls-plot) for the stationary case.</figcaption>
-</figure>
+<figcaption>Different lengthscale functions and their effects on the GP prior
+with Gibbs’ kernel. Compare with <a href="#figure-ls-plot">Fig. 4</a>
+for the stationary case.</figcaption></figure>
 </p>
 <h3 id="limitations-1">Limitations</h3>
 <p>As observed by Paciorek <a class="footnote-ref" href="#fn8" id="fnref8" role="doc-noteref"><sup>8</sup></a> and Gibbs <a class="footnote-ref" href="#fn9" id="fnref9" role="doc-noteref"><sup>9</sup></a>,
@@ -312,7 +329,15 @@ lower-dimensional embeddings of data.</p>
 <p>Returning to the compositional kernels, we observed that given a
 stationary kernel, linear deformations only correspond to changes in
 lengthscale. More explicitly, consider a linear deformation of a square
-exponential kernel: therefore, in this case, the lengthscales of the
+exponential kernel: <span class="math display">$$\begin{align}
+\fun{k}_{\vecfun{\tau}}\call{\vec{a},\vec{b}}
+&amp;=
+\exp\bcall{-\frac{1}{2}\parens*{\vecfun{\tau}\call{\vec{a}}-\vecfun{\tau}\call{\vec{b}}}^\T\parens*{\vecfun{\tau}\call{\vec{a}}-\vecfun{\tau}\call{\vec{b}}}}\\
+&amp;=
+\exp\bcall{-\frac{1}{2}\parens*{\mat{W}{\vec{a}}-\mat{W}{\vec{b}}}^\T\parens*{\mat{W}{\vec{a}}-\mat{W}{\vec{b}}}}\\
+&amp;=
+\exp\bcall{-\frac{1}{2}\parens*{{\vec{a}}-{\vec{b}}}^\T\bcall{\mat{W}^\T\mat{W}}\parens*{{\vec{a}}-{\vec{b}}}},
+\end{align}$$</span> therefore, in this case, the lengthscales of the
 deformed kernel are <span class="math inline">$\bracks*{\mat{W}^\T\mat{W}}^{-1}$</span>.</p>
 <p>Our proposal is to expand to take this deformation and turn it into a
 locally linear deformation <span class="math inline">$\vecfun{\tau}\call{\vec{x}} =
@@ -325,9 +350,25 @@ its entries, unlike for the lengthscale function <span class="math inline">$\mat
 <p>To propose a hierarchical GP using this type of kernel
 transformation, we propose keeping the deformation rooted in the
 original input space but composing the weight matrix normally. In other
-words, a two layer deep deformation has form: with the prior
-distributions: Therefore, each node in the hierarchical model is still
-connected to the input layers, just like in DNSGP but not in the
+words, a two layer deep deformation has form: <span class="math display">$$\begin{align}
+\vecfun{\tau}^{(1)}\call{\vec{x}}
+&amp;= \matfun{W}^{(1)}\call{{\vec{x}}}\,\vec{x}\\
+\vecfun{\tau}^{(2)}\call{\vec{x}}
+&amp;=
+\matfun{W}^{(2)}\call{\vecfun{\tau}^{(1)}\call{\vec{x}}}\,\vec{x}\\
+&amp;= \matfun{W}^{(2)}\call{
+\matfun{W}^{(1)}\call{\vec{x}}\,\vec{x}
+}\,\vec{x},
+\end{align}$$</span> with the prior distributions: <span class="math display">$$\begin{align}
+\matfun{W}^{(1)}\call\blank &amp;\sim \prod_{i,j}
+\operatorname{GP}\parensgiven*{\fun{w}^{(1)}_{ij}}{\fun{0}, \fun{k}}\\
+\matfun{W}^{(2)}\call\blank &amp;\sim \prod_{i,j}
+\operatorname{GP}\parensgiven*{\fun{w}^{(2)}_{ij}}{\fun{0},
+\fun{k}_{\vecfun{\tau}^{(1)}}}\\
+\fun{f}\call\blank &amp;\sim \GPdist{\fun{0},
+\fun{k}_{\vecfun{\tau}^{(2)}}}.
+\end{align}$$</span> Therefore, each node in the hierarchical model is
+still connected to the input layers, just like in DNSGP but not in the
 traditional CDGP. <a href="#figure-graph">Fig. 9</a> shows a graphical
 representation. For this reason, we name our proposal thin and deep
 Gaussian processes, as the size of the smallest loop (i.e. its <a href="https://en.wikipedia.org/wiki/Girth_(graph_theory)">girth</a>) is
@@ -336,8 +377,8 @@ model.</p>
 <p>
 <figure class="numbered" id="figure-graph">
 <img src="/assets/pubs/Souza2023-tdgp/plots/graphicalmodel.png"/>
-<figcaption>A comparison of the graphical model of CDGP and our proposal. The dashed nodes represent where nodes in the hierarchy are attached.</figcaption>
-</figure>
+<figcaption>A comparison of the graphical model of CDGP and our proposal. The
+dashed nodes represent where nodes in the hierarchy are attached.</figcaption></figure>
 </p>
 <h2 id="variational-inference">Variational inference</h2>
 <p>As with any deep GP model, the posterior distribution is not a
@@ -345,7 +386,16 @@ Gaussian process and approximate inference has to be used. For this
 work, we choose to apply the variational inference with inducing points
 framework that’s common used for deep GPs <a class="footnote-ref" href="#fn10" id="fnref10" role="doc-noteref"><sup>10</sup></a><a class="footnote-ref" href="#fn11" id="fnref11" role="doc-noteref"><sup>11</sup></a>. We introduce <span class="math inline"><em>m</em><sub>ℓ</sub></span> inducing points for
 each layer <span class="math inline">ℓ</span>, such that our variational
-posterior distribution is: where the <span class="math inline"><em>q</em></span> distributions are parametrized by
+posterior distribution is: <span class="math display">$$\begin{alignat}{3}
+&amp;p\callgiven{\fun{f}}{\matfun{W}^{(L)}, \vec{u}^{(L+1)}}
+&amp;&amp;&amp;&amp;q\call{\vec{u}^{(L+1)}}\\
+\prod_{\ell=2}^L
+&amp;p\callgiven{\matfun{W}^{(\ell)}}{\matfun{W}^{(\ell-1)},
+\mat{V}^{(\ell)}}
+&amp;&amp;\prod_{d,q}^{D,Q_{\ell}}&amp;&amp;q\call{\vec{v}_{:dq}^{(\ell)}}\\
+&amp;p\callgiven{\matfun{W}^{(1)}}{\mat{V}^{(1)}}
+&amp;&amp;\prod_{d,q}^{D,Q_1}&amp;&amp;q\call{\vec{v}_{:dq}^{(1)}},
+\end{alignat}$$</span> where the <span class="math inline"><em>q</em></span> distributions are parametrized by
 a mean and covariance vectors of dimension <span class="math inline"><em>m</em><sub>ℓ</sub></span>. By exploiting earlier
 results from VI on square exponential hyperparameters <a class="footnote-ref" href="#fn12" id="fnref12" role="doc-noteref"><sup>12</sup></a>,
 we propose a deterministic closed-form VI scheme restricted when the
@@ -377,8 +427,7 @@ covering the Andes mountain range, ocean, and land.</p>
 <p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/screen.png"/>
-<figcaption>Satellite imagery of the selected area, shown in yellow.</figcaption>
-</figure>
+<figcaption>Satellite imagery of the selected area, shown in yellow.</figcaption></figure>
 </p>
 <p>This region was subsampled to 1,000 points from this region and
 compared with the methods via five-fold cross validation. The baselines
@@ -387,8 +436,7 @@ variational DKL <a class="footnote-ref" href="#fn15" id="fnref15" role="doc-note
 <p>
 <figure class="numbered">
 <img src="/assets/pubs/Souza2023-tdgp/plots/plots.jpg"/>
-<figcaption>Satellite imagery of the selected area, shown in yellow.</figcaption>
-</figure>
+<figcaption>Satellite imagery of the selected area, shown in yellow.</figcaption></figure>
 </p>
 <p>As seen in the results plot, TDGP is the only method that learns both
 a lengthscale field, represented as the trace of the lengthscale matrix,

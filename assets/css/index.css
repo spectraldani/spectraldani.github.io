@@ -1,5 +1,10 @@
 :root {
-    --main-width: 768px;
+    --width-main: 768px;
+    /* Colors */
+    --color-sky: #1d98ff;
+    --color-link: #3273dc;
+    --color-text-bg: #fff;
+    --color-text-bg-accent: #f5f5f5;
 }
 
 * {
@@ -7,15 +12,19 @@
 }
 
 html {
-    background-color: #1d98ff;
+    background-color: var(--color-sky);
     height: 100%;
 }
 
 hr {
-    background-color: #f5f5f5;
+    background-color: rgb(0 0 0 / 10%);
     border: none;
     display: block;
     height: 2px;
+    margin: 1rem 0;
+}
+
+main > hr {
     margin: 1.5rem 0;
 }
 
@@ -36,14 +45,14 @@ body {
 }
 
 main {
-    background-color: #fff;
-    max-width: var(--main-width);
+    background-color: var(--color-text-bg);
+    max-width: var(--width-main);
     padding: 1em;
     flex: 1;
 }
 
 a {
-    color: #3273dc;
+    color: var(--color-link);
     text-decoration: none;
 }
 
@@ -142,9 +151,11 @@ ul#publication-list, ul#publication-list ul {
 
 ul#publication-list h3 {
     font-size: 1.25em;
+    margin-block: 0.5em;
 }
 
 li.article {
+    font-size: 0.8rem;
     border: 1px solid;
     padding: 0.5em;
     display: grid;
@@ -160,13 +171,28 @@ li.article {
     margin-bottom: 0.5em;
 }
 
+li.article  a.article-title {
+    font-size: 1.5em;
+}
+
 li.article > div.icons {
     grid-area: icons;
     text-align: right;
+    font-size: 1.25em;
+}
+
+li.article > div.icons > a {
+    vertical-align: middle;
+}
+
+li.article > div.icons > a.more {
+    padding: 0 0.3em;
+    background: var(--color-link);
+    color: var(--color-text-bg);
 }
 
 ul#publication-list > li {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .article-title {
@@ -189,6 +215,7 @@ ul#publication-list > li {
     width: 5em;
     height: 7.071em;
     border: 1px solid black;
+    margin: auto 0;
 }
 
 .paper-preview > * {
@@ -204,4 +231,12 @@ ul#publication-list > li {
     transform: rotate(-54.74deg) translateY(-0.1em);
     font-size: 1.5em;
     overflow-wrap: normal;
+}
+
+/* Box header */
+div#box-header {
+    border-top: 2px solid rgb(0 0 0 / 5%);
+    border-bottom: 2px solid rgb(0 0 0 / 5%);
+    padding: 1.5rem 0px;
+    margin: 0.5rem 0px;
 }

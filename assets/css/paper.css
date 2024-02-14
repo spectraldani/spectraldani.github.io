@@ -3,6 +3,11 @@ div#box-header {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    column-gap: 0.5em;
+}
+
+div#box-holder {
+    width: 100%;
 }
 
 .paper-preview {
@@ -20,7 +25,15 @@ main {
 
 .title-holder {
     text-align: center;
-    flex: 1 0 50%;
+    flex: 1 0 70%;
+}
+
+span.links {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 0.3em;
+    gap: 0.3em;
 }
 
 span.links a {
@@ -30,11 +43,6 @@ span.links a {
 
 span.links a > svg {
     margin-right: 0.3em;
-}
-
-span.links {
-    display: flex;
-    justify-content: space-evenly;
 }
 
 figure > img {

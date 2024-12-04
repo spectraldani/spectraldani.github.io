@@ -12,7 +12,7 @@
 }
 
 html {
-    background-color: var(--color-sky);
+    background-color: var(--color-text-bg);
     height: 100%;
 }
 
@@ -29,6 +29,7 @@ main > hr {
 }
 
 body {
+    background-color: var(--color-sky);
     color: #4a4a4a;
     font-family: "Segoe UI", Roboto, Ubuntu, "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;

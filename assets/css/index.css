@@ -1,10 +1,35 @@
 :root {
     --width-main: 768px;
     /* Colors */
-    --color-sky: #1d98ff;
-    --color-link: #3273dc;
+    --color-sky: #19f;
+    --color-link: #37d;
     --color-text-bg: #fff;
     --color-text-bg-accent: #f5f5f5;
+    /*  12-bit rainbow  (https://iamkate.com/data/12-bit-rainbow/)*/
+    --color-01: #817;
+    --color-01-text: #fff;
+    --color-02: #a35;
+    --color-02-text: #fff;
+    --color-03: #c66;
+    --color-03-text: #fff;
+    --color-04: #e94;
+    --color-04-text: #fff;
+    --color-05: #ed0;
+    --color-05-text: #000;
+    --color-06: #9d5;
+    --color-06-text: #000;
+    --color-07: #4d8;
+    --color-07-text: #000;
+    --color-08: #2cb;
+    --color-08-text: #000;
+    --color-09: #0bc;
+    --color-09-text: #000;
+    --color-10: #09c;
+    --color-10-text: #fff;
+    --color-11: #36b;
+    --color-11-text: #fff;
+    --color-12: #639;
+    --color-12-text: #fff;
 }
 
 * {
@@ -158,11 +183,12 @@ ul#publication-list h3 {
 li.article {
     font-size: 0.8rem;
     border: 1px solid;
-    padding: 0.5em;
+    /* padding: 0.5em; */
     display: grid;
-    grid-template-columns: 5em 1fr;
-    grid-template-rows: 1fr min-content;
+    grid-template-columns: 6em 1fr;
+    grid-template-rows: calc(1lh + 0.5em) 1fr min-content;
     grid-template-areas:
+        "type desc"
         "preview desc"
         "preview icons";
     column-gap: 1em;
@@ -172,7 +198,7 @@ li.article {
     margin-bottom: 0.5em;
 }
 
-li.article  a.article-title {
+li.article a.article-title {
     font-size: 1.5em;
 }
 
@@ -208,15 +234,54 @@ ul#publication-list > li {
     content: '”';
 }
 
+.paper-type {
+    grid-area: type;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-weight: bold;
+    background: #000;
+    color: #fff;
+}
+
+.paper-type.inproceedings {
+    background: var(--color-10);
+    color: var(--color-10-text);
+}
+
+.paper-type.thesis {
+    background: var(--color-07);
+    color: var(--color-07-text);
+}
+
+.paper-type.workshop {
+    background: var(--color-06);
+    color: var(--color-06-text);
+}
+
 .paper-preview {
     grid-area: preview;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5em;
-    height: 7.071em;
+    width: 100%;
+    aspect-ratio: 0.7071;
     border: 1px solid black;
-    margin: auto 0;
+}
+
+li.article > .paper-preview {
+    border: 0;
+    border-right: 1px solid black;
+}
+
+
+.paper-info {
+    grid-area: desc;
+    margin-top: 0.2em;
+    margin-right: 0.5em;
 }
 
 .paper-preview > * {

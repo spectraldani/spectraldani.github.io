@@ -75,3 +75,13 @@ table th, table td {
     border-top: 1px solid rgb(0 0 0 / 10%);
     text-align: center;
 }
+
+/* Math */
+img.math.display {
+    display: block;
+    margin: 0.5lh auto;
+}
+
+img.math {
+    font-size: 1.1em;
+}

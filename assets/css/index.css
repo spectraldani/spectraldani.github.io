@@ -275,6 +275,8 @@ ul#publication-list > li {
 li.article > .paper-preview {
     border: 0;
     border-right: 1px solid black;
+    height: 100%;
+    margin: auto 0;
 }
 
 

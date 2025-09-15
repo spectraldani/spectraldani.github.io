@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chef"
+version = "0.0.0"
+description = ""
+authors = [
+    { name="Daniel Augusto de Souza", email="dani@spectral.space" }
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "tqdm==4.67.1",
+    "beautifulsoup4==4.13.5",
+]

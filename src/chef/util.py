@@ -4,7 +4,6 @@ import subprocess
 from itertools import filterfalse, tee
 from pathlib import Path
 
-import requests
 from bs4 import BeautifulSoup
 
 js_python = re.compile(r"\bpy`(.+?)`")
@@ -50,19 +49,38 @@ def make_soup(x: str) -> BeautifulSoup:
     return BeautifulSoup(x, features='html.parser')
 
 
-def http_get(url, *args, **kwargs):
-    cache_file = (download_path / f'{hash(url)}')
-    if cache_file.exists():
-        return cache_file.read_text(encoding='utf-8')
-    else:
-        data = requests.get(url, *args, **kwargs).text
-        cache_file.write_text(data, encoding='utf-8')
-        return data
-
-
 def parse_markdown(md: str) -> BeautifulSoup:
-    process = subprocess.run(['pandoc', '-f', 'markdown', '-t', 'html'], capture_output=True, input=md, text=True)
+    process = subprocess.run(
+        ['pandoc', '-f', 'markdown', '-t', 'html', '--gladtex'],
+        capture_output=True, input=md.encode('utf-8'), text=False
+    )
     if process.returncode == 0:
-        return make_soup(process.stdout)
+        return make_soup(process.stdout.decode('utf-8'))
     else:
         raise Exception(f'pandoc failed: {process.stdout}\n{process.stderr}')
+
+
+class FrozenDict[TK, TV](dict[TK, TV]):
+    def __setitem__(self, key, value):
+        raise TypeError("This dictionary is read-only")
+
+    def __delitem__(self, key):
+        raise TypeError("This dictionary is read-only")
+
+    def clear(self):
+        raise TypeError("This dictionary is read-only")
+
+    def pop(self, key, default=None):
+        raise TypeError("This dictionary is read-only")
+
+    def popitem(self):
+        raise TypeError("This dictionary is read-only")
+
+    def setdefault(self, key, default=None):
+        raise TypeError("This dictionary is read-only")
+
+    def update(self, *args, **kwargs):
+        raise TypeError("This dictionary is read-only")
+
+    def __hash__(self):
+        return hash(frozenset(self.items()))

@@ -1,4 +1,4 @@
-import components.util as util
+import chef.util as util
 
 
 def render(type, library, href=None, title=None, label=None):

@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+dependencies:
+  - nodejs=24.4.1
+  - pandoc=3.8
+  - pip=25.2
+  - python=3.13.7
